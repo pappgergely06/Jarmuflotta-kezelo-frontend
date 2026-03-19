@@ -1,9 +1,8 @@
+import { ChakraProvider, Flex } from '@chakra-ui/react';
 import style from './LoginPage.module.css'
 
 function LoginPage() {
-    return (
-        <h1>Login Page</h1>
-    );
+    return ();
 }
 
 export default LoginPage;
