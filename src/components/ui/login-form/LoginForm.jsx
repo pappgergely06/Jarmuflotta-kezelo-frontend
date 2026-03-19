@@ -7,12 +7,17 @@ function LoginForm() {
             rounded={'lg'}
             bg={useColorModeValue('white', 'gray.700')}
             boxShadow={'lg'}
-            p={8}
-            width={'60%'}
+            p={{ base: 4, md: 8 }}
+            width={{ base: '90%', sm: '80%', md: '60%', lg: '40%' }}
         >
             <Stack alignItems={"center"} gap={"2rem"} spacing={4}>
-                <Image src="src\assets\logo.png" width={"80%"} borderRadius={"1rem"}/>
-                <Box width={"70%"}>
+                <Image
+                    src="src\assets\logo.png"
+                    width={{ base: "100%", md: "80%" }}
+                    borderRadius={"1rem"}
+                />
+
+                <Box width={{ base: "100%", md: "70%" }}>
                     <Text fontWeight="medium" mb={1}>Felhasználónév</Text>
                     <Input
                         type="text"
@@ -21,9 +26,9 @@ function LoginForm() {
                     />
                 </Box>
 
-                <Box width={"70%"}>
+                <Box width={{ base: "100%", md: "70%" }}>
                     <Flex justify="space-between" align="center" mb={1}>
-                        <Text color={"white"} fontWeight="medium">Jelszó</Text>
+                        <Text fontWeight="medium">Jelszó</Text>
                     </Flex>
                     <Input
                         type="password"
@@ -33,17 +38,17 @@ function LoginForm() {
                 </Box>
 
                 <Button
-                    bg={useColorModeValue("","#121C1E")}
-                    width="60%"
+                    bg={useColorModeValue("gray.800", "#121C1E")}
+                    width={{ base: "100%", md: "60%" }}
                     mt={4}
                     type="submit"
                     color={"white"}
+                    _hover={{ opacity: 0.9 }}
                 >
                     Bejelentkezés
                 </Button>
             </Stack>
-
-        </Box >
+        </Box>
     );
 }
 
