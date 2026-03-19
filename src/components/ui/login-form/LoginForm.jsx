@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Input, Flex, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Flex, Stack, Text, Image } from "@chakra-ui/react";
 import { useColorModeValue } from "../chakra-snippets/color-mode";
 
 function LoginForm() {
@@ -8,25 +8,20 @@ function LoginForm() {
             bg={useColorModeValue('white', 'gray.700')}
             boxShadow={'lg'}
             p={8}
-            width={'50%'}
+            width={'60%'}
         >
-            <Stack spacing={4}>
-                <Box textAlign="center">
-                    <Heading fontSize={'2xl'} textAlign={'center'}>
-                        Bejelentkezés
-                    </Heading>
-                </Box>
-
-                <Box>
+            <Stack alignItems={"center"} gap={"2rem"} spacing={4}>
+                <Image src="src\assets\logo.png" width={"80%"} borderRadius={"1rem"}/>
+                <Box width={"70%"}>
                     <Text fontWeight="medium" mb={1}>Felhasználónév</Text>
                     <Input
                         type="text"
-                        placeholder="felhasználónév"
+                        placeholder="felhasznalonev"
                         focusBorderColor="blue.400"
                     />
                 </Box>
 
-                <Box>
+                <Box width={"70%"}>
                     <Flex justify="space-between" align="center" mb={1}>
                         <Text color={"white"} fontWeight="medium">Jelszó</Text>
                     </Flex>
@@ -38,7 +33,8 @@ function LoginForm() {
                 </Box>
 
                 <Button
-                    width="full"
+                    bg={useColorModeValue("","#121C1E")}
+                    width="60%"
                     mt={4}
                     type="submit"
                     color={"white"}

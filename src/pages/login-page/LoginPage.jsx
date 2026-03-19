@@ -6,8 +6,12 @@ import LoginForm from '../../components/ui/login-form/LoginForm';
 function LoginPage() {
     return (
         <Provider>
-            <Flex className={style.flex} width={"100%"} alignItems={"center"} flexDirection={"column"} justifyContent={"center"}>
-                <h1>Járműflotta kezelő</h1>
+            <Flex 
+            className={style.flex} 
+            width={"100%"} 
+            alignItems={"center"} 
+            flexDirection={"column"} 
+            justifyContent={"center"}>
                 <LoginForm/>
             </Flex>
         </Provider>
