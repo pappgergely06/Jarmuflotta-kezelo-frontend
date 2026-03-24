@@ -3,11 +3,11 @@ import { AuthContext } from "./AuthContext";
 
 function AuthProvider( { children } ) {
     
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [user, setUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     return (
-        <AuthContext.Provider value={{isLoggedIn, isAdmin}}>
+        <AuthContext.Provider value={{user, isLoading}}>
             { children }
         </AuthContext.Provider>
     );
