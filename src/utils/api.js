@@ -2,7 +2,7 @@ import axios from "axios"
 
 const API_URL = "https://flotta.vbdev.hu/api/"
 
-async function fetchUser(token) {
+export async function fetchUser(token) {
     try {
 
         const response = await axios.get(API_URL + "auth", {

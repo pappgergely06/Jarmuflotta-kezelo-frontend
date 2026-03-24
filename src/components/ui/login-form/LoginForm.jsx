@@ -1,7 +1,14 @@
-import { Box, Button, Heading, Input, Flex, Stack, Text, Image } from "@chakra-ui/react";
+import { Box, Button, Input, Flex, Stack, Text, Image } from "@chakra-ui/react";
 import { useColorModeValue } from "../chakra-snippets/color-mode";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function LoginForm() {
+
+    const [username, setUserName] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
     return (
         <Box
             rounded={'lg'}
