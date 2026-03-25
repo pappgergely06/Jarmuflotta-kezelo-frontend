@@ -7,7 +7,10 @@ function LoginForm() {
 
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
-    const navigate = useNavigate()
+
+    function handleLogin() {
+        login(username, password)
+    }
 
     return (
         <Box
@@ -30,6 +33,7 @@ function LoginForm() {
                         type="text"
                         placeholder="felhasznalonev"
                         focusBorderColor="blue.400"
+                        onChange={(event) => setUserName(event.target.value)}
                     />
                 </Box>
 
@@ -41,6 +45,7 @@ function LoginForm() {
                         type="password"
                         placeholder="*******"
                         focusBorderColor="blue.400"
+                        onChange={(event) => setPassword(event.target.value)}
                     />
                 </Box>
 
@@ -51,6 +56,7 @@ function LoginForm() {
                     type="submit"
                     color={"white"}
                     _hover={{ opacity: 0.9 }}
+                    onClick={handleLogin}
                 >
                     Bejelentkezés
                 </Button>
