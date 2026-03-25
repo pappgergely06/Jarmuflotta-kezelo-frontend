@@ -6,15 +6,18 @@ import AdminPage from './pages/admin-page/AdminPage'
 import HomePage from './pages/home-page/HomePage'
 import DriverPage from './pages/driver-page/DriverPage'
 import NotFound from './pages/not-found/NotFound'
+import AuthProvider from './contexts/auth/AuthProvider'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <Routes>
+  <AuthProvider>
+        <Routes>
       <Route path='/' element={<LoginPage />} />
       <Route path='admin' element={<AdminPage />} />
       <Route path='home' element={<HomePage />} />
       <Route path='driver' element={<DriverPage/>} />
       <Route path='*' element={<NotFound/>}/>
     </Routes>
+  </AuthProvider>
   </BrowserRouter>
 )
