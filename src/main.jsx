@@ -10,14 +10,14 @@ import AuthProvider from './contexts/auth/AuthProvider'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-  <AuthProvider>
-        <Routes>
-      <Route path='/' element={<LoginPage />} />
-      <Route path='admin' element={<AdminPage />} />
-      <Route path='home' element={<HomePage />} />
-      <Route path='driver' element={<DriverPage/>} />
-      <Route path='*' element={<NotFound/>}/>
-    </Routes>
-  </AuthProvider>
+    <AuthProvider>
+      <Routes>
+        <Route path='/' element={<LoginPage />} />
+        <Route path='admin' element={<AdminPage />} />
+        <Route path='home' element={<HomePage />} />
+        <Route path='driver' element={<DriverPage />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </AuthProvider>
   </BrowserRouter>
 )

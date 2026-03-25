@@ -32,7 +32,7 @@ export async function fetchToken(username, password) {
 
         return response.data
 
-    } catch {
+    } catch (error) {
         if (error.response) {
             console.error("Server error: " + error)
         } else {
