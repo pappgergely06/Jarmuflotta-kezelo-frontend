@@ -5,18 +5,23 @@ import { fetchUser } from "../../utils/api";
 function AuthProvider( { children } ) {
     
     const [user, setUser] = useState(null)
-    const [userError, setUserError] = useState()
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        fetchUser()
-            .then((user) => setUser(user))
-            .catch((error) => setUserError(error))
-            .finally(() => setIsLoading(false))
-    }, [])
+    async function login(username, password) {
+        setIsLoading(true);
+        try {
+            const data = await fetchToken(username, password);
+            const userData = await fetchUser(data.token);
+            setUser(userData);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
     return (
-        <AuthContext.Provider value={{user, isLoading}}>
+        <AuthContext.Provider value={{user, isLoading, login}}>
             { children }
         </AuthContext.Provider>
     );
