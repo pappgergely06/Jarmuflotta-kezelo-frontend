@@ -1,7 +1,6 @@
 import { Box, Button, Input, Flex, Stack, Text, Image } from "@chakra-ui/react";
 import { useColorModeValue } from "../chakra-snippets/color-mode";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 
 function LoginForm() {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import { fetchToken, fetchUser } from "../../utils/api";
 import { useNavigate } from "react-router";
-import Cookies from "js-cookies";
+import Cookies from "js-cookie";
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
