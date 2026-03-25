@@ -17,7 +17,7 @@ function LoginForm() {
     return (
         <Box
             rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
+            bg={useColorModeValue('white', 'rgb(48, 166, 172)')}
             boxShadow={'lg'}
             p={{ base: 4, md: 8 }}
             width={{ base: '90%', sm: '80%', md: '60%', lg: '40%' }}
@@ -32,6 +32,7 @@ function LoginForm() {
                 <Box width={{ base: "100%", md: "70%" }}>
                     <Text fontWeight="medium" mb={1}>Felhasználónév</Text>
                     <Input
+                        bg={useColorModeValue('white', 'gray.700')}
                         type="text"
                         placeholder="felhasznalonev"
                         focusBorderColor="blue.400"
@@ -44,6 +45,7 @@ function LoginForm() {
                         <Text fontWeight="medium">Jelszó</Text>
                     </Flex>
                     <Input
+                        bg={useColorModeValue('white', 'gray.700')}
                         type="password"
                         placeholder="*******"
                         focusBorderColor="blue.400"
