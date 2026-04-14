@@ -5,7 +5,7 @@ const API_URL = "https://flotta.vbdev.hu/api/"
 export async function fetchUser(token) {
     try {
 
-        const response = await axios.get(API_URL + "auth", {
+        const response = await axios.get(API_URL + "auth/register", {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -25,7 +25,7 @@ export async function fetchUser(token) {
 export async function fetchToken(username, password) {
     try {
 
-        const response = await axios.post(API_URL + "login", {
+        const response = await axios.post(API_URL + "auth/login", {
             username,
             password
         })

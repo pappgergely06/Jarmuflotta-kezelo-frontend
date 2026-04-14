@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [loginError, setLoginError] = useState(""); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ function AuthProvider({ children }) {
                 } catch (error) {
                     console.error("Érvénytelen token, kijelentkeztetés...");
                     Cookies.remove("auth_token");
+                    setUser(null);
                 }
             }
             setIsLoading(false);
@@ -28,8 +30,12 @@ function AuthProvider({ children }) {
 
     async function login(username, password) {
         setIsLoading(true);
+        setLoginError("");
+        
         try {
             const data = await fetchToken(username, password);
+            
+            
             Cookies.set("auth_token", data.token, { 
                 expires: 7, 
                 secure: true, 
@@ -38,9 +44,10 @@ function AuthProvider({ children }) {
 
             const userData = await fetchUser(data.token);
             setUser(userData);
-            navigate("home");
+            navigate("/home");
         } catch (error) {
             console.error("Login hiba:", error);
+            setLoginError("Hibás felhasználónév vagy jelszó!");
         } finally {
             setIsLoading(false);
         }
@@ -49,11 +56,12 @@ function AuthProvider({ children }) {
     function logout() {
         Cookies.remove("auth_token");
         setUser(null);
+        setLoginError(""); 
         navigate("/login");
     }
 
     return (
-        <AuthContext.Provider value={{ user, isLoading, login, logout }}>
+        <AuthContext.Provider value={{ user, loginError, isLoading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

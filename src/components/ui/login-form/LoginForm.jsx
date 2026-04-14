@@ -8,7 +8,7 @@ function LoginForm() {
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
-    const { user, isLoading, login} = useAuth()
+    const {login, loginError} = useAuth()
 
     function handleLogin() {
         login(username, password)
@@ -52,6 +52,12 @@ function LoginForm() {
                         onChange={(event) => setPassword(event.target.value)}
                     />
                 </Box>
+
+                {
+                    loginError && (
+                        <Text fontWeight="medium">{loginError}</Text>
+                    )
+                }
 
                 <Button
                     bg={useColorModeValue("gray.800", "#121C1E")}
