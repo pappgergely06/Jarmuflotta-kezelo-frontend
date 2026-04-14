@@ -44,7 +44,7 @@ function AuthProvider({ children }) {
 
             const userData = await fetchUser(data.token);
             setUser(userData);
-            navigate("/home");
+            navigate("/admin");
         } catch (error) {
             console.error("Login hiba:", error);
             setLoginError("Hibás felhasználónév vagy jelszó!");
