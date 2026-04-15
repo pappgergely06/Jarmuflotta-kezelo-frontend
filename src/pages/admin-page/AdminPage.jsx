@@ -1,5 +1,7 @@
-import { Box, Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Image } from '@chakra-ui/react';
 import { Provider } from '../../components/ui/chakra-snippets/provider';
+import { FaBell } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 import style from './AdminPage.module.css'
 
 function AdminPage() {
@@ -22,7 +24,18 @@ function AdminPage() {
                     h="10vh"
                     borderRadius="0.5rem"
                 >
-
+                    <Flex width={"100%"} height={"100%"} justifyContent={"space-between"}>
+                        <Image paddingLeft={"1rem"} src="src\assets\logo.png" />
+                        <Flex height={"100%"}
+                            paddingRight={'1rem'}
+                            alignItems={"center"}
+                            justifyContent={"space-evenly"}
+                            gap={"2rem"}
+                        >
+                            <CgProfile size={"40%"}/>
+                            <FaBell size={"40%"} color='rgb(48, 166, 172)' />
+                        </Flex>
+                    </Flex>
                 </Box>
                 <Grid
                     w="90vw"
