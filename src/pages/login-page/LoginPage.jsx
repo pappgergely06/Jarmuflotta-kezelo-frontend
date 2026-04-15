@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import { Provider } from '../../components/ui/chakra-snippets/provider';
-import LoginForm from '../../components/ui/login-form/LoginForm';
+import LoginForm from '../../components/login-form/LoginForm';
 
 function LoginPage() {
     return (
