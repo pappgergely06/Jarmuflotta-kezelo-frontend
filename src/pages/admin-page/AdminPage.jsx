@@ -1,7 +1,5 @@
-import { Box, Flex, Grid, GridItem, Image, Text } from '@chakra-ui/react';
+import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import { Provider } from '../../components/ui/chakra-snippets/provider';
-import { FaBell } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
 import style from './AdminPage.module.css'
 import Navbar from '../../components/navbar/Navbar';
 import Overview from '../../components/overview/Overview';

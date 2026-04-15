@@ -1,13 +1,12 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, VStack, Text } from "@chakra-ui/react";
 import GridBox from "../ui/grid-box/GridBox";
+import VehiclesTable from "./vehicles-table/VehiclesTable";
 
 function Vehicles() {
     return (
         <GridBox header={"Járművek"}>
-            <Flex 
-                justifyContent={"flex-end"}
-                padding={"0.5rem"}
-            >
+            <VStack padding={"0.5rem"}>
+                <VehiclesTable />
                 <Button
                     w={"20%"}
                     h={"2rem"}
@@ -15,7 +14,7 @@ function Vehicles() {
                 >
                     <Text fontSize={"sm"}>Jármű hozzáadása</Text>
                 </Button>
-            </Flex>
+            </VStack>
         </GridBox>
     );
 }

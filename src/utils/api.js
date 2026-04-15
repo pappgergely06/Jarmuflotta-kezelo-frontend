@@ -23,7 +23,6 @@ export async function fetchToken(username, password) {
 }
 
 export async function fetchUser(token) {
-    console.log(API_URL + "auth/profile")
     try {
 
         const response = await axios.get(API_URL + "auth/profile", {

@@ -13,7 +13,6 @@ function Overview() {
                 <Flex padding={"0.5rem 0.5rem 0.5rem 1rem"} width={"100%"} justifyContent={"flex-start"}>
                     <Text fontWeight={"bold"}>Figyelmeztetések és határidők</Text>
                 </Flex>
-                <Flex></Flex>
             </Flex>
         </GridBox>
     );

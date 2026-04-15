@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Separator, Text } from "@chakra-ui/react";
 
 function GridBox({header, children}) {
     return (
@@ -17,6 +17,7 @@ function GridBox({header, children}) {
             >
                 <Text color={"black"} fontWeight={"bold"}>{header}</Text>
             </Flex>
+            <Separator/>
             { children }
         </Box>
     );
