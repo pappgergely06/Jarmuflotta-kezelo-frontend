@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Image } from "@chakra-ui/react";
 import { CgProfile } from "react-icons/cg";
 import { FaBell } from "react-icons/fa";
 
@@ -18,10 +18,15 @@ function Navbar() {
                     paddingRight={'1rem'}
                     alignItems={"center"}
                     justifyContent={"space-evenly"}
-                    gap={"2rem"}
+                    gap={"1rem"}
                 >
-                    <CgProfile size={"40%"} />
-                    <FaBell size={"40%"} color='rgb(48, 166, 172)' />
+                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"}>
+                        <CgProfile/>
+                    </IconButton>
+
+                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"}>
+                        <FaBell color='rgb(48, 166, 172)' />
+                    </IconButton>
                 </Flex>
             </Flex>
         </Box>
