@@ -14,24 +14,65 @@ function AdminPage() {
                 justifyContent={"center"}
                 bg={'rgb(48, 166, 172)'}
             >
-                <Grid
-                    h="200px"
-                    templateRows="repeat(2, 1fr)"
-                    templateColumns="repeat(5, 1fr)"
-                    gap={4}
+                <Box
+                    bg="#121C1E"
+                    colSpan={3}
+                    marginBottom={2}
+                    w="90vw"
+                    h="10vh"
+                    borderRadius="0.5rem"
                 >
-                    <GridItem bg={"beige"} rowSpan={2} colSpan={1}>
-                        <Box>rowSpan=2</Box>
+
+                </Box>
+                <Grid
+                    w="90vw"
+                    h="85vh"
+                    templateRows="repeat(3, 1fr)"
+                    templateColumns="repeat(5, 1fr)"
+                    gap={2}
+                >
+                    <GridItem
+                        bg={"beige"}
+                        colSpan={2}
+                        rowSpan={2}
+                        borderRadius="0.5rem"
+                    >
+                        <Box></Box>
                     </GridItem>
-                    <GridItem bg={"beige"} colSpan={2}>
-                        <Box>colSpan=2</Box>
+
+                    <GridItem
+                        bg={"beige"}
+                        colSpan={3}
+                        rowSpan={2}
+                        borderRadius="0.5rem"
+                    >
+                        <Box></Box>
                     </GridItem>
-                    <GridItem bg={"beige"} colSpan={2}>
-                        <Box>colSpan=2</Box>
+
+                    <GridItem
+                        bg={"beige"}
+                        colSpan={2}
+                        borderRadius="0.5rem"
+                    >
+                        <Box></Box>
                     </GridItem>
-                    <GridItem bg={"beige"} colSpan={4}>
-                        <Box>colSpan=4</Box>
+
+                    <GridItem
+                        bg={"beige"}
+                        colSpan={2}
+                        borderRadius="0.5rem"
+                    >
+                        <Box></Box>
                     </GridItem>
+
+                    <GridItem
+                        bg={"beige"}
+                        colSpan={1}
+                        borderRadius="0.5rem"
+                    >
+                        <Box></Box>
+                    </GridItem>
+
                 </Grid>
             </Flex>
         </Provider>
