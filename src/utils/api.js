@@ -2,25 +2,6 @@ import axios from "axios"
 
 const API_URL = "https://flotta.vbdev.hu/api/"
 
-export async function fetchUser(token) {
-    try {
-
-        const response = await axios.get(API_URL + "auth/register", {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
 
 export async function fetchToken(username, password) {
     try {
@@ -40,3 +21,25 @@ export async function fetchToken(username, password) {
         }
     }
 }
+
+export async function fetchUser(token) {
+    console.log(API_URL + "auth/profile")
+    try {
+
+        const response = await axios.get(API_URL + "auth/profile", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
