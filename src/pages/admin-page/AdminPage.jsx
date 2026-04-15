@@ -7,6 +7,8 @@ import Navbar from '../../components/navbar/Navbar';
 import Overview from '../../components/overview/Overview';
 import Vehicles from '../../components/vehicles/Vehicles';
 import Drivers from '../../components/drivers/Drivers';
+import DataInput from '../../components/data-input/DataInput';
+import CostStatement from '../../components/cost-statement/CostStatement';
 
 function AdminPage() {
     return (
@@ -60,22 +62,7 @@ function AdminPage() {
                         colSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Box
-                            width={"100%"}
-                            height={"5vh"}
-                            bg={"gray.200"}
-                            borderRadius={"0.5rem 0.5rem 0 0"}
-                        >
-                            <Flex
-                                justifyContent={"flex-start"}
-                                alignItems={"center"}
-                                width={"100%"}
-                                height={"100%"}
-                                paddingLeft={"1rem"}
-                            >
-                                <Text color={"black"} fontWeight={"bold"}>Adatbevitel</Text>
-                            </Flex>
-                        </Box>
+                        <DataInput/>
                     </GridItem>
 
                     <GridItem
@@ -83,22 +70,7 @@ function AdminPage() {
                         colSpan={1}
                         borderRadius="0.5rem"
                     >
-                        <Box
-                            width={"100%"}
-                            height={"5vh"}
-                            bg={"gray.200"}
-                            borderRadius={"0.5rem 0.5rem 0 0"}
-                        >
-                            <Flex
-                                justifyContent={"flex-start"}
-                                alignItems={"center"}
-                                width={"100%"}
-                                height={"100%"}
-                                paddingLeft={"1rem"}
-                            >
-                                <Text color={"black"} fontWeight={"bold"}>Költségkimutatás</Text>
-                            </Flex>
-                        </Box>
+                        <CostStatement/>
                     </GridItem>
 
                 </Grid>

@@ -1,11 +1,11 @@
 import GridBox from "../ui/grid-box/GridBox";
 
-function Drivers() {
+function DataInput() {
     return (
-        <GridBox header={"Sofőrök"}>
+        <GridBox header={"Adatbevitel"}>
 
         </GridBox>
     );
 }
 
-export default Drivers;
+export default DataInput;
