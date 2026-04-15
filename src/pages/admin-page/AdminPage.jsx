@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, Image } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Image, Text } from '@chakra-ui/react';
 import { Provider } from '../../components/ui/chakra-snippets/provider';
 import { FaBell } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -32,7 +32,7 @@ function AdminPage() {
                             justifyContent={"space-evenly"}
                             gap={"2rem"}
                         >
-                            <CgProfile size={"40%"}/>
+                            <CgProfile size={"40%"} />
                             <FaBell size={"40%"} color='rgb(48, 166, 172)' />
                         </Flex>
                     </Flex>
@@ -43,47 +43,124 @@ function AdminPage() {
                     templateRows="repeat(3, 1fr)"
                     templateColumns="repeat(5, 1fr)"
                     gap={2}
+                    fontFamily={"sans-serif"}
                 >
                     <GridItem
-                        bg={"beige"}
+                        bg={"gray.50"}
                         colSpan={2}
                         rowSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Box></Box>
+                        <Box
+                            width={"100%"}
+                            height={"5vh"}
+                            bg={"gray.200"}
+                            borderRadius={"0.5rem 0.5rem 0 0"}
+
+                        >
+                            <Flex
+                                justifyContent={"flex-start"}
+                                alignItems={"center"}
+                                width={"100%"}
+                                height={"100%"}
+                                paddingLeft={"1rem"}
+                            >
+                                <Text color={"black"} fontWeight={"bold"}>Flotta áttekintés</Text>
+                            </Flex>
+                        </Box>
                     </GridItem>
 
                     <GridItem
-                        bg={"beige"}
+                        bg={"gray.50"}
                         colSpan={3}
                         rowSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Box></Box>
+                        <Box
+                            width={"100%"}
+                            height={"5vh"}
+                            bg={"gray.200"}
+                            borderRadius={"0.5rem 0.5rem 0 0"}
+                        >
+                            <Flex
+                                justifyContent={"flex-start"}
+                                alignItems={"center"}
+                                width={"100%"}
+                                height={"100%"}
+                                paddingLeft={"1rem"}
+                            >
+                                <Text color={"black"} fontWeight={"bold"}>Járművek</Text>
+                            </Flex>
+                        </Box>
                     </GridItem>
 
                     <GridItem
-                        bg={"beige"}
+                        bg={"gray.50"}
                         colSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Box></Box>
+                        <Box
+                            width={"100%"}
+                            height={"5vh"}
+                            bg={"gray.200"}
+                            borderRadius={"0.5rem 0.5rem 0 0"}
+                        >
+                            <Flex
+                                justifyContent={"flex-start"}
+                                alignItems={"center"}
+                                width={"100%"}
+                                height={"100%"}
+                                paddingLeft={"1rem"}
+                            >
+                                <Text color={"black"} fontWeight={"bold"}>Sofőrök</Text>
+                            </Flex>
+                        </Box>
                     </GridItem>
 
                     <GridItem
-                        bg={"beige"}
+                        bg={"gray.50"}
                         colSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Box></Box>
+                        <Box
+                            width={"100%"}
+                            height={"5vh"}
+                            bg={"gray.200"}
+                            borderRadius={"0.5rem 0.5rem 0 0"}
+                        >
+                            <Flex
+                                justifyContent={"flex-start"}
+                                alignItems={"center"}
+                                width={"100%"}
+                                height={"100%"}
+                                paddingLeft={"1rem"}
+                            >
+                                <Text color={"black"} fontWeight={"bold"}>Adatbevitel</Text>
+                            </Flex>
+                        </Box>
                     </GridItem>
 
                     <GridItem
-                        bg={"beige"}
+                        bg={"gray.50"}
                         colSpan={1}
                         borderRadius="0.5rem"
                     >
-                        <Box></Box>
+                        <Box
+                            width={"100%"}
+                            height={"5vh"}
+                            bg={"gray.200"}
+                            borderRadius={"0.5rem 0.5rem 0 0"}
+                        >
+                            <Flex
+                                justifyContent={"flex-start"}
+                                alignItems={"center"}
+                                width={"100%"}
+                                height={"100%"}
+                                paddingLeft={"1rem"}
+                            >
+                                <Text color={"black"} fontWeight={"bold"}>Költségkimutatás</Text>
+                            </Flex>
+                        </Box>
                     </GridItem>
 
                 </Grid>
