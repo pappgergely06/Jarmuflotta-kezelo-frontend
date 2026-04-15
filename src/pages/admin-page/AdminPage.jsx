@@ -5,6 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import style from './AdminPage.module.css'
 import Navbar from '../../components/navbar/Navbar';
 import Overview from '../../components/overview/Overview';
+import Vehicles from '../../components/vehicles/Vehicles';
 
 function AdminPage() {
     return (
@@ -42,22 +43,7 @@ function AdminPage() {
                         rowSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Box
-                            width={"100%"}
-                            height={"5vh"}
-                            bg={"gray.200"}
-                            borderRadius={"0.5rem 0.5rem 0 0"}
-                        >
-                            <Flex
-                                justifyContent={"flex-start"}
-                                alignItems={"center"}
-                                width={"100%"}
-                                height={"100%"}
-                                paddingLeft={"1rem"}
-                            >
-                                <Text color={"black"} fontWeight={"bold"}>Járművek</Text>
-                            </Flex>
-                        </Box>
+                        <Vehicles/>
                     </GridItem>
 
                     <GridItem
