@@ -1,5 +1,4 @@
 import { Box, Button, Input, Flex, Stack, Text, Image } from "@chakra-ui/react";
-import { useColorModeValue } from "../ui/chakra-snippets/color-mode";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
@@ -17,7 +16,7 @@ function LoginForm() {
     return (
         <Box
             rounded={'lg'}
-            bg={useColorModeValue('white', 'rgb(48, 166, 172)')}
+            bg='rgb(48, 166, 172)'
             boxShadow={'lg'}
             p={{ base: 4, md: 8 }}
             width={{ base: '90%', sm: '80%', md: '60%', lg: '40%' }}
@@ -32,7 +31,7 @@ function LoginForm() {
                 <Box width={{ base: "100%", md: "70%" }}>
                     <Text fontWeight="medium" mb={1}>Felhasználónév</Text>
                     <Input
-                        bg={useColorModeValue('white', 'gray.700')}
+                        bg='gray.700'
                         type="text"
                         placeholder="felhasznalonev"
                         focusBorderColor="blue.400"
@@ -45,7 +44,7 @@ function LoginForm() {
                         <Text fontWeight="medium">Jelszó</Text>
                     </Flex>
                     <Input
-                        bg={useColorModeValue('white', 'gray.700')}
+                        bg='gray.700'
                         type="password"
                         placeholder="*******"
                         focusBorderColor="blue.400"
@@ -60,7 +59,7 @@ function LoginForm() {
                 }
 
                 <Button
-                    bg={useColorModeValue("gray.800", "#121C1E")}
+                    bg="#121C1E"
                     width={{ base: "100%", md: "60%" }}
                     mt={4}
                     type="submit"

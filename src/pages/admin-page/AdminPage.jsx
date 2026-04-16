@@ -1,5 +1,4 @@
 import { Flex, Grid, GridItem } from '@chakra-ui/react';
-import { Provider } from '../../components/ui/chakra-snippets/provider';
 import style from './AdminPage.module.css'
 import Navbar from '../../components/navbar/Navbar';
 import Overview from '../../components/overview/Overview';
@@ -10,7 +9,6 @@ import CostStatement from '../../components/cost-statement/CostStatement';
 
 function AdminPage() {
     return (
-        <Provider>
             <Flex
                 width={"100%"}
                 minHeight={"100vh"}
@@ -73,7 +71,6 @@ function AdminPage() {
 
                 </Grid>
             </Flex>
-        </Provider>
     );
 }
 
