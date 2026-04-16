@@ -33,7 +33,7 @@ function AdminPage() {
                         rowSpan={2}
                         borderRadius="0.5rem"
                     >
-                        <Overview/>
+                        <Drivers/>
                     </GridItem>
 
                     <GridItem
@@ -47,15 +47,15 @@ function AdminPage() {
 
                     <GridItem
                         bg={"gray.50"}
-                        colSpan={2}
+                        colSpan={1}
                         borderRadius="0.5rem"
                     >
-                        <Drivers/>
+                        <Overview/>
                     </GridItem>
 
                     <GridItem
                         bg={"gray.50"}
-                        colSpan={2}
+                        colSpan={3}
                         borderRadius="0.5rem"
                     >
                         <DataInput/>
