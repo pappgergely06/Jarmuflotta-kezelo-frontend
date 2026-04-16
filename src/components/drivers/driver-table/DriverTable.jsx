@@ -6,7 +6,7 @@ function DriverTable() {
     const [drivers, setDrivers] = useState([])
 
     return (
-        <Table.ScrollArea color={"black"} w="100%" borderWidth="1px" borderRadius="md" h="80%">
+        <Table.ScrollArea color={"black"} borderWidth="1px" borderRadius="md" h="80%" w={"100%"}>
               <Table.Root size="md" stickyHeader interactive striped>
                 <Table.Header bg="gray.200">
                   <Table.Row>

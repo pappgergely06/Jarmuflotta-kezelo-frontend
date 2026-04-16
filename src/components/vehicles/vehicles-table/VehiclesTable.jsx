@@ -1,7 +1,5 @@
-import { Table } from "@chakra-ui/react";
-
-function VehiclesTable() {
-
+import { RadioGroup, RadioGroupItem, Table } from "@chakra-ui/react";
+import { useState } from "react";
 
 const carTestData = [
   {
@@ -138,9 +136,19 @@ const carTestData = [
   }
 ];
 
+function VehiclesTable() {
+
+  const [selectedId, setSelectedId] = useState(null)
+
   return (
-    <Table.ScrollArea color={"black"} w="100%" borderWidth="1px" borderRadius="md" h="80%">
-      <Table.Root size="md" stickyHeader interactive striped>
+    <Table.ScrollArea
+      color="black"
+      w="100%"
+      borderWidth="1px"
+      borderRadius="md"
+      h="80%"
+    >
+      <Table.Root size="md" stickyHeader interactive>
         <Table.Header bg="gray.200">
           <Table.Row>
             <Table.ColumnHeader>Rendszám</Table.ColumnHeader>
@@ -155,20 +163,40 @@ const carTestData = [
         </Table.Header>
 
         <Table.Body>
-          {carTestData.map((vehicle) => (
-            <Table.Row
-              key={vehicle.id}
-            >
-              <Table.Cell>{vehicle.plate}</Table.Cell>
-              <Table.Cell>{vehicle.vin}</Table.Cell>
-              <Table.Cell>{vehicle.year}</Table.Cell>
-              <Table.Cell>{vehicle.make}</Table.Cell>
-              <Table.Cell>{vehicle.model}</Table.Cell>
-              <Table.Cell>{vehicle.odo} km</Table.Cell>
-              <Table.Cell>{vehicle.ins_exp}</Table.Cell>
-              <Table.Cell>{vehicle.insp_exp}</Table.Cell>
-            </Table.Row>
-          ))}
+          {carTestData.map((vehicle) => {
+            const isSelected = selectedId === vehicle.id
+
+            return (
+              <Table.Row
+                key={vehicle.id}
+                onClick={() => setSelectedId(isSelected ? null : vehicle.id)}
+
+                cursor="pointer"
+                data-selected={isSelected ? "" : undefined}
+
+                _selected={{
+                  bg: "blue.100",
+                  _hover: { bg: "blue.200" },
+                  "& > td": {
+                    color: "blue.900",
+                    fontWeight: "bold"
+                  }
+                }}
+
+                _hover={{ bg: "gray.100" }}
+                transition="background 0.2s"
+              >
+                <Table.Cell>{vehicle.plate}</Table.Cell>
+                <Table.Cell>{vehicle.vin}</Table.Cell>
+                <Table.Cell>{vehicle.year}</Table.Cell>
+                <Table.Cell>{vehicle.make}</Table.Cell>
+                <Table.Cell>{vehicle.model}</Table.Cell>
+                <Table.Cell>{vehicle.odo} km</Table.Cell>
+                <Table.Cell>{vehicle.ins_exp}</Table.Cell>
+                <Table.Cell>{vehicle.insp_exp}</Table.Cell>
+              </Table.Row>
+            )
+          })}
         </Table.Body>
       </Table.Root>
     </Table.ScrollArea>

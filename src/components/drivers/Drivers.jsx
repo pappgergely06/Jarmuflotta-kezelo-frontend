@@ -2,29 +2,36 @@ import { IconButton, Stack, Text, VStack } from "@chakra-ui/react";
 import GridBox from "../ui/grid-box/GridBox";
 import DriverTable from "./driver-table/DriverTable";
 import { IoIosPersonAdd } from "react-icons/io";
-import { FaCar } from "react-icons/fa6";
-import { PiAddressBook } from "react-icons/pi";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function Drivers() {
     return (
         <GridBox header={"Sofőrök"}>
-            <VStack height="100%" padding="0.5rem">
+
+            <VStack h="calc(100% - 5vh)" padding="0.5rem">
                 <DriverTable />
+
                 <Stack flexDirection={"row"}>
+
                     <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
                         <IoIosPersonAdd />
                         <Text fontSize={"sm"}>Új sofőr rögzítése</Text>
                     </IconButton>
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
-                        <FaCar />
-                        <Text fontSize={"sm"}>Autó hozzárendelés</Text>
+
+                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
+                        <FaEdit />
+                        <Text fontSize={"sm"}>Szerkesztés</Text>
                     </IconButton>
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
-                        <PiAddressBook/>
-                        <Text fontSize={"sm"}>Adatmódosítás</Text>
+
+                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"red.600"}>
+                        <FaTrashAlt/>
+                        <Text fontSize={"sm"}>Törlés</Text>
                     </IconButton>
+
                 </Stack>
+
             </VStack>
+
         </GridBox>
     );
 }
