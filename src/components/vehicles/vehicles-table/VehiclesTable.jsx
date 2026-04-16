@@ -67,7 +67,7 @@ const carTestData = [
     make: "Ford",
     model: "Focus",
     odo: 285000,
-    ins_exp: "2024-03-10", // Lejárt biztosítás
+    ins_exp: "2024-03-10",
     insp_exp: "2024-06-15"
   },
   {
@@ -112,7 +112,7 @@ const carTestData = [
     model: "308",
     odo: 198750,
     ins_exp: "2024-05-20",
-    insp_exp: "2023-11-15" // Lejárt műszaki
+    insp_exp: "2023-11-15"
   },
   {
     id: 11,
