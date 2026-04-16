@@ -1,7 +1,7 @@
 import { VStack, Text, Stack, IconButton } from "@chakra-ui/react";
 import GridBox from "../ui/grid-box/GridBox";
 import VehiclesTable from "./vehicles-table/VehiclesTable";
-import { FaCar, FaScrewdriverWrench } from "react-icons/fa6";
+import { FaCar } from "react-icons/fa6";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function Vehicles() {

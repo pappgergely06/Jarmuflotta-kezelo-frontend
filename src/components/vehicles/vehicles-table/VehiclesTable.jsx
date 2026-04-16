@@ -170,10 +170,8 @@ function VehiclesTable() {
               <Table.Row
                 key={vehicle.id}
                 onClick={() => setSelectedId(isSelected ? null : vehicle.id)}
-
                 cursor="pointer"
                 data-selected={isSelected ? "" : undefined}
-
                 _selected={{
                   bg: "blue.100",
                   _hover: { bg: "blue.200" },
@@ -182,7 +180,6 @@ function VehiclesTable() {
                     fontWeight: "bold"
                   }
                 }}
-
                 _hover={{ bg: "gray.100" }}
                 transition="background 0.2s"
               >
