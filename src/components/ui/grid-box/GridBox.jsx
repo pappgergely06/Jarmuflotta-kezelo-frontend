@@ -1,26 +1,28 @@
 import { Box, Flex, Separator, Text } from "@chakra-ui/react";
 
-function GridBox({header, children}) {
+function GridBox({ header, children }) {
     return (
-        <Box
-            width={"100%"}
-            height={"5vh"}
-            bg={"gray.200"}
-            borderRadius={"0.5rem 0.5rem 0 0"}
-        >
-            <Flex
-                justifyContent={"flex-start"}
-                alignItems={"center"}
+        <Box width={"100%"} height={"100%"}>
+            <Box
                 width={"100%"}
-                height={"100%"}
-                paddingLeft={"1rem"}
+                height={"5vh"}
+                bg={"gray.200"}
+                borderRadius={"0.5rem 0.5rem 0 0"}
             >
-                <Text color={"black"} fontWeight={"bold"}>{header}</Text>
-            </Flex>
-            <Separator/>
-            { children }
+                <Flex
+                    justifyContent={"flex-start"}
+                    alignItems={"center"}
+                    width={"100%"}
+                    height={"100%"}
+                    paddingLeft={"1rem"}
+                >
+                    <Text color={"black"} fontWeight={"bold"}>{header}</Text>
+                </Flex>
+                <Separator />
+            </Box>
+            {children}
         </Box>
-    );
+    )
 }
 
 export default GridBox;

@@ -5,7 +5,7 @@ import VehiclesTable from "./vehicles-table/VehiclesTable";
 function Vehicles() {
     return (
         <GridBox header={"Járművek"}>
-            <VStack padding={"0.5rem"}>
+            <VStack height={"100%"} padding={"0.5rem"}>
                 <VehiclesTable />
                 <Button
                     w={"20%"}

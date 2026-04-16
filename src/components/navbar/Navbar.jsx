@@ -20,11 +20,11 @@ function Navbar() {
                     justifyContent={"space-evenly"}
                     gap={"1rem"}
                 >
-                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"}>
-                        <CgProfile/>
+                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
+                        <CgProfile color="white"/>
                     </IconButton>
 
-                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"}>
+                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
                         <FaBell color='rgb(48, 166, 172)' />
                     </IconButton>
                 </Flex>
