@@ -1,7 +1,8 @@
-import { Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import "../forms-style/FormsStyle.module.css"
+import { Flex, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
+import "../../../forms-style/FormsStyle.module.css"
 import { useState } from "react";
 import { FaRoute } from "react-icons/fa6";
+import { IoIosSave } from "react-icons/io";
 
 function TravelDocForm() {
 
@@ -26,7 +27,7 @@ function TravelDocForm() {
     }
 
     return (
-        <Flex bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={"33%"}>
+        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={"25%"}>
             <HStack justifyContent={"center"}>
                 <FaRoute color="black" />
                 <Text color={"black"} fontWeight={"bold"}>Menetlevél</Text>
@@ -45,7 +46,10 @@ function TravelDocForm() {
                     <input onChange={handleEndKmChange} value={endKm} type="number" />
                 </VStack>
             </HStack>
-            <Button onClick={saveTravelDoc} bg={"green.600"}>Rögzít</Button>
+            <IconButton onClick={saveTravelDoc} bg={"green.600"}>
+                <IoIosSave />
+                <Text>Rögzít</Text>
+            </IconButton>
         </Flex>
     );
 }
