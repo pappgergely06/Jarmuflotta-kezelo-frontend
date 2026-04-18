@@ -1,4 +1,21 @@
-.traveldate {
+input {
+    color-scheme: "light";
+    width: 100%;
     padding: 0.5rem;
     border-radius: 0.2rem;
+    background-color:#F7FAFC;
+    color: black;
+    border: 1px solid #E2E8F0;
+}
+
+input::placeholder {
+    color: black;
+}
+
+label {
+    color: black;
+}
+
+input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
