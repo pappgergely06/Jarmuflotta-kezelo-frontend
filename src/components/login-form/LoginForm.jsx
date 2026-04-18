@@ -1,13 +1,14 @@
-import { Box, Button, Input, Flex, Stack, Text, Image } from "@chakra-ui/react";
+import { Box, Button, Input, Flex, Stack, Text, Image, IconButton, Alert } from "@chakra-ui/react";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { LuLogIn } from "react-icons/lu";
 
 function LoginForm() {
 
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
-    const {login, loginError} = useAuth()
+    const { login, loginError } = useAuth()
 
     function handleLogin() {
         login(username, password)
@@ -16,7 +17,7 @@ function LoginForm() {
     return (
         <Box
             rounded={'lg'}
-            bg='rgb(48, 166, 172)'
+            bg="#121C1E"
             boxShadow={'lg'}
             p={{ base: 4, md: 8 }}
             width={{ base: '90%', sm: '80%', md: '60%', lg: '40%' }}
@@ -31,7 +32,7 @@ function LoginForm() {
                 <Box width={{ base: "100%", md: "70%" }}>
                     <Text fontWeight="medium" mb={1}>Felhasználónév</Text>
                     <Input
-                        bg='gray.700'
+                        bg='gray.50'
                         type="text"
                         placeholder="felhasznalonev"
                         focusBorderColor="blue.400"
@@ -44,7 +45,7 @@ function LoginForm() {
                         <Text fontWeight="medium">Jelszó</Text>
                     </Flex>
                     <Input
-                        bg='gray.700'
+                        bg='gray.50'
                         type="password"
                         placeholder="*******"
                         focusBorderColor="blue.400"
@@ -54,21 +55,28 @@ function LoginForm() {
 
                 {
                     loginError && (
-                        <Text fontWeight="medium">{loginError}</Text>
+                        <Box width={{ base: "100%", md: "70%" }}>
+                            <Alert.Root status="error">
+                                <Alert.Indicator />
+                                <Alert.Title>
+                                    Hibás felhasználónév vagy jelszó!
+                                </Alert.Title>
+                            </Alert.Root>
+                        </Box>
                     )
                 }
 
-                <Button
-                    bg="#121C1E"
+                <IconButton
+                    bg="green.600"
                     width={{ base: "100%", md: "60%" }}
                     mt={4}
                     type="submit"
                     color={"white"}
                     _hover={{ opacity: 0.9 }}
-                    onClick={handleLogin}
-                >
-                    Bejelentkezés
-                </Button>
+                    onClick={handleLogin}>
+                    <LuLogIn />
+                    <Text>Bejelentkezés</Text>
+                </IconButton>
             </Stack>
         </Box>
     );
