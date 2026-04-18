@@ -1,5 +1,5 @@
 import { Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import style from "./TravelDocForm.module.css"
+import style from "../DataInForms.module.css"
 import { useState } from "react";
 
 function TravelDocForm() {
@@ -9,22 +9,19 @@ function TravelDocForm() {
     const [endKm, setEndKm] = useState(0)
 
     function handleDateChange(event) {
-        console.log(event.target.value)
         setDate(event.target.value)
     }
 
     function handleStartKmChange(event) {
-        console.log(event.target.value)
         setStartKm(event.target.value)
     }
 
     function handleEndKmChange(event) {
-        console.log(event.target.value)
         setEndKm(event.target.value)
     }
 
     function saveTravelDoc() {
-        
+
     }
 
     return (
@@ -32,16 +29,16 @@ function TravelDocForm() {
             <Text textAlign={"center"} color={"black"} fontWeight={"bold"}>Menetlevél</Text>
             <VStack>
                 <Text color={"black"}>Dátum</Text>
-                <input onChange={handleDateChange} value={date} type="date" className={style.traveldate} />
+                <input onChange={handleDateChange} value={date} type="date"/>
             </VStack>
             <HStack width={"100%"}>
                 <VStack>
                     <Text color={"black"}>Induló Km</Text>
-                    <input onChange={handleStartKmChange} value={startKm} type="number" placeholder="Induló km" />
+                    <input onChange={handleStartKmChange} value={startKm} type="number"/>
                 </VStack>
                 <VStack>
                     <Text color={"black"}>Záró Km</Text>
-                    <input onChange={handleEndKmChange} value={endKm} type="number" placeholder="Induló km" />
+                    <input onChange={handleEndKmChange} value={endKm} type="number"/>
                 </VStack>
             </HStack>
             <Button onClick={saveTravelDoc} bg={"green.600"}>Rögzít</Button>
