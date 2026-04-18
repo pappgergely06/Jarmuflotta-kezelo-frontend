@@ -50,24 +50,17 @@ function AdminPage() {
                         colSpan={1}
                         borderRadius="0.5rem"
                     >
-                        <Overview/>
+                        <CostStatement/>
                     </GridItem>
 
                     <GridItem
                         bg={"gray.50"}
-                        colSpan={3}
+                        colSpan={4}
                         borderRadius="0.5rem"
                     >
                         <DataInput/>
                     </GridItem>
 
-                    <GridItem
-                        bg={"gray.50"}
-                        colSpan={1}
-                        borderRadius="0.5rem"
-                    >
-                        <CostStatement/>
-                    </GridItem>
 
                 </Grid>
             </Flex>

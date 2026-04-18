@@ -1,6 +1,7 @@
 import { Button, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import style from "../DataInForms.module.css"
+import "../forms-style/FormsStyle.module.css"
 import { useState } from "react";
+import { BsFuelPumpFill } from "react-icons/bs";
 
 function FuelingForm() {
 
@@ -21,24 +22,27 @@ function FuelingForm() {
     }
 
     function saveFueling() {
-        
+
     }
 
     return (
         <Flex bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={"33%"}>
-            <Text textAlign={"center"} color={"black"} fontWeight={"bold"}>Tankolás</Text>
+            <HStack justifyContent={"center"}>
+                <BsFuelPumpFill color="black" />
+                <Text color={"black"} fontWeight={"bold"}>Tankolás</Text>
+            </HStack>
             <VStack>
                 <Text color={"black"}>Dátum</Text>
-                <input onChange={handleDateChange} value={date} type="date"/>
+                <input onChange={handleDateChange} value={date} type="date" />
             </VStack>
             <HStack width={"100%"}>
                 <VStack>
                     <Text color={"black"}>Tankolt Literek</Text>
-                    <input onChange={handleAmountLitersChange} value={amountLiters} type="number"/>
+                    <input onChange={handleAmountLitersChange} value={amountLiters} type="number" />
                 </VStack>
                 <VStack>
                     <Text color={"black"}>Literenkénti Ár</Text>
-                    <input onChange={handlePricePerLiterChange} value={pricePerLiter} type="number"/>
+                    <input onChange={handlePricePerLiterChange} value={pricePerLiter} type="number" />
                 </VStack>
             </HStack>
             <Button onClick={saveFueling} bg={"green.600"}>Rögzít</Button>
