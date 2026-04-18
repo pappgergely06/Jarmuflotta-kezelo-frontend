@@ -114,7 +114,7 @@ function DriverTable() {
         <Table.Header bg="gray.200">
           <Table.Row>
             <Table.ColumnHeader>Név</Table.ColumnHeader>
-            <Table.ColumnHeader>Autó(k)</Table.ColumnHeader>
+            <Table.ColumnHeader>Autó</Table.ColumnHeader>
             <Table.ColumnHeader>Jogosítvány száma</Table.ColumnHeader>
             <Table.ColumnHeader>Telefonszám</Table.ColumnHeader>
             <Table.ColumnHeader>Email</Table.ColumnHeader>
