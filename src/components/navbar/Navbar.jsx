@@ -1,4 +1,4 @@
-import { Box, Button, CloseButton, Dialog, Flex, IconButton, Image, Portal, Text } from "@chakra-ui/react";
+import { Box, Button, CloseButton, Dialog, Drawer, Flex, IconButton, Image, Portal, Text } from "@chakra-ui/react";
 import { CgProfile } from "react-icons/cg";
 import { FaBell } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
@@ -30,9 +30,33 @@ function Navbar() {
                         <CgProfile color='rgb(48, 166, 172)' />
                     </IconButton>
 
-                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
-                        <FaBell color='rgb(48, 166, 172)' />
-                    </IconButton>
+                    <Drawer.Root>
+                        <Drawer.Trigger asChild>
+                            <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
+                                <FaBell color='rgb(48, 166, 172)' />
+                            </IconButton>
+                        </Drawer.Trigger>
+                        <Portal>
+                            <Drawer.Backdrop />
+                            <Drawer.Positioner>
+                                <Drawer.Content bg={'#121C1E'}>
+                                    <Drawer.Header>
+                                        <Drawer.Title>Értesítések</Drawer.Title>
+                                    </Drawer.Header>
+                                    <Drawer.Body>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                    </Drawer.Body>
+                                    <Drawer.CloseTrigger asChild>
+                                        <CloseButton bg={"#121C1E"} color={'rgb(48, 166, 172)'} size="sm" />
+                                    </Drawer.CloseTrigger>
+                                </Drawer.Content>
+                            </Drawer.Positioner>
+                        </Portal>
+                    </Drawer.Root>
+
 
                     <Dialog.Root size={"sm"}>
                         <Dialog.Trigger asChild>
@@ -43,22 +67,19 @@ function Navbar() {
                         <Portal>
                             <Dialog.Backdrop />
                             <Dialog.Positioner>
-                                <Dialog.Content>
+                                <Dialog.Content  bg={'#121C1E'}>
                                     <Dialog.Header>
-                                        <Dialog.Title color={"black"}>Kijelentkezés</Dialog.Title>
+                                        <Dialog.Title >Kijelentkezés</Dialog.Title>
                                     </Dialog.Header>
                                     <Dialog.Body>
-                                        <Text color={"black"}>Biztosan kijeletkezik?</Text>
+                                        <Text>Biztosan kijeletkezik?</Text>
                                     </Dialog.Body>
                                     <Dialog.Footer>
                                         <Dialog.ActionTrigger asChild>
-                                            <Button color={"white"} variant="outline">Vissza</Button>
+                                            <Button bg={"green.600"} color={"white"} variant="outline">Vissza</Button>
                                         </Dialog.ActionTrigger>
-                                        <Button onClick={logout}>Igen</Button>
+                                        <Button bg={"rgb(48, 166, 172)"} onClick={logout}>Igen</Button>
                                     </Dialog.Footer>
-                                    <Dialog.CloseTrigger asChild>
-                                        <CloseButton size="sm" color={"white"}/>
-                                    </Dialog.CloseTrigger>
                                 </Dialog.Content>
                             </Dialog.Positioner>
                         </Portal>
