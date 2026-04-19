@@ -6,10 +6,16 @@ import Vehicles from '../../components/vehicles/Vehicles';
 import Drivers from '../../components/drivers/Drivers';
 import DataInput from '../../components/data-input/DataInput';
 import CostStatement from '../../components/cost-statement/CostStatement';
+import useAuth from '../../hooks/useAuth';
+import { Navigate } from 'react-router';
 
 function AdminPage() {
+
+    const { user } = useAuth()
     return (
-            <Flex
+        <>
+                {!user && <Navigate to={"/"}/>}
+        {<Flex
                 width={"100%"}
                 minHeight={"100vh"}
                 px={4}
@@ -63,7 +69,9 @@ function AdminPage() {
 
 
                 </Grid>
-            </Flex>
+            </Flex>}
+
+        </>
     );
 }
 
