@@ -10,10 +10,7 @@ function DriverPage() {
 
     return (
         <>
-            {
-                !user && <Navigate to={"/"}/>
-            }
-            {
+            { user && user.role === "driver" &&
                 <Flex
                     width={"100%"}
                     minHeight={"100vh"}

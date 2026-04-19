@@ -14,8 +14,7 @@ function AdminPage() {
     const { user } = useAuth()
     return (
         <>
-                {!user && <Navigate to={"/"}/>}
-        {<Flex
+        {user && user.role === "admin" && <Flex
                 width={"100%"}
                 minHeight={"100vh"}
                 px={4}
