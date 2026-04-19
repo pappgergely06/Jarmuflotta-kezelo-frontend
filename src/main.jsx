@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import LoginPage from './pages/login-page/LoginPage'
 import AdminPage from './pages/admin-page/AdminPage'
 import DriverPage from './pages/driver-page/DriverPage'
@@ -13,6 +13,7 @@ createRoot(document.getElementById('root')).render(
     <Provider>
       <AuthProvider>
         <Routes>
+          <Route path='/' element={<Navigate to="/login" replace />} />
           <Route path='login' element={<LoginPage />} />
           <Route path='admin' element={<AdminPage />} />
           <Route path='driver' element={<DriverPage />} />

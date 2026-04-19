@@ -1,8 +1,7 @@
-import { Button, Flex, HStack, IconButton, RadioGroup, Text, VStack } from "@chakra-ui/react"
+import {Flex, HStack, IconButton, RadioGroup, Text, VStack} from "@chakra-ui/react"
 import "../../forms-style/FormsStyle.module.css"
 import { useState } from "react"
 import { FaFileAlt } from "react-icons/fa"
-import { GiMoneyStack } from "react-icons/gi"
 
 
 function CostStatementForm() {

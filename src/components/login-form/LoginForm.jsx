@@ -1,4 +1,4 @@
-import { Box, Button, Input, Flex, Stack, Text, Image, IconButton, Alert } from "@chakra-ui/react";
+import { Box, Input, Flex, Stack, Text, Image, IconButton, Alert } from "@chakra-ui/react";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { LuLogIn } from "react-icons/lu";
