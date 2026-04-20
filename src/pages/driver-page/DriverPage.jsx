@@ -29,7 +29,7 @@ function DriverPage() {
                         w="90vw"
                         h="85vh"
                         templateRows="repeat(2, minmax(0, 1fr))"
-                        templateColumns="repeat(5, minmax(0, 1fr))"
+                        templateColumns="repeat(3, minmax(0, 1fr))"
                         gap={2}
                         fontFamily={"sans-serif"}
                     >
@@ -37,11 +37,11 @@ function DriverPage() {
                             <MyVehicle />
                         </GridItem>
 
-                        <GridItem bg={"gray.50"} colSpan={2} borderRadius="0.5rem" overflow="hidden">
+                        <GridItem bg={"gray.50"}  borderRadius="0.5rem" overflow="hidden">
                             <TravelDocs />
                         </GridItem>
 
-                        <GridItem bg={"gray.50"} colSpan={2} borderRadius="0.5rem" overflow="hidden">
+                        <GridItem bg={"gray.50"}  borderRadius="0.5rem" overflow="hidden">
                             <GridBox header={"Tankolások"} />
                         </GridItem>
 
@@ -49,11 +49,11 @@ function DriverPage() {
                             <GridBox header={"Saját adatok"} />
                         </GridItem>
 
-                        <GridItem bg={"gray.50"} colSpan={2} borderRadius="0.5rem" overflow="hidden">
+                        <GridItem bg={"gray.50"} borderRadius="0.5rem" overflow="hidden">
                             <TravelDocForm />
                         </GridItem>
 
-                        <GridItem bg={"gray.50"} colSpan={2} borderRadius="0.5rem" overflow="hidden">
+                        <GridItem bg={"gray.50"} borderRadius="0.5rem" overflow="hidden">
                             <FuelingForm />
                         </GridItem>
                     </Grid>
