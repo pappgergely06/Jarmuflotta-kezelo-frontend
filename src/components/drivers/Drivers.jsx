@@ -8,7 +8,7 @@ function Drivers() {
     return (
         <GridBox header={"Sofőrök"}>
 
-            <VStack h="calc(100% - 5vh)" padding="0.5rem">
+            <VStack h="calc(100% - 5vh)">
                 <DriverTable />
 
                 <Stack flexDirection={"row"}>

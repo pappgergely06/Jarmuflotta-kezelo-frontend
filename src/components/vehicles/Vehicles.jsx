@@ -8,7 +8,7 @@ function Vehicles() {
     return (
         <GridBox header={"Járművek"}>
 
-            <VStack h="calc(100% - 5vh)" padding={"0.5rem"}>
+            <VStack h="calc(100% - 5vh)">
 
                 <VehiclesTable />
 
