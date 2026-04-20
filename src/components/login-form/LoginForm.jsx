@@ -14,6 +14,12 @@ function LoginForm() {
         login(username, password)
     }
 
+    function handleKeyDown(event) {
+        if (event.key === "Enter") {
+            handleLogin()
+        }
+    }
+
     return (
         <Box
             rounded={'lg'}
@@ -45,6 +51,7 @@ function LoginForm() {
                         <Text fontWeight="medium">Jelszó</Text>
                     </Flex>
                     <Input
+                        onKeyDown={handleKeyDown}
                         bg='gray.50'
                         type="password"
                         placeholder="*******"
