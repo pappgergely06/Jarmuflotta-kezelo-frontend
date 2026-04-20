@@ -7,6 +7,7 @@ import GridBox from '../../components/ui/grid-box/GridBox';
 import TravelDocForm from '../../components/data-input/forms/travel-doc-form/TravelDocForm';
 import MyVehicle from '../../components/my-vehicle/MyVehicle';
 import TravelDocs from '../../components/travel-docs/TravelDocs';
+import MyData from '../../components/my-data/MyData';
 
 function DriverPage() {
     const { user } = useAuth();
@@ -46,7 +47,7 @@ function DriverPage() {
                         </GridItem>
 
                         <GridItem bg={"gray.50"} borderRadius="0.5rem" overflow="hidden">
-                            <GridBox header={"Saját adatok"} />
+                            <MyData/>
                         </GridItem>
 
                         <GridItem bg={"gray.50"} borderRadius="0.5rem" overflow="hidden">
