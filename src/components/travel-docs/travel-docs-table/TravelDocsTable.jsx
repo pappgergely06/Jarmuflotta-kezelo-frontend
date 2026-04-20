@@ -20,14 +20,14 @@ function TravelDocsTable() {
         return end - start
     }
     return (
-        <Table.ScrollArea color="black" borderWidth="1px" borderRadius="md" maxHeight={"100%"} w="100%">
+        <Table.ScrollArea color="black" maxHeight={"100%"} w="100%">
             <Table.Root size="md" stickyHeader interactive>
                 <Table.Header bg="gray.200">
                     <Table.Row>
-                        <Table.ColumnHeader>Dátum</Table.ColumnHeader>
-                        <Table.ColumnHeader>Induló km</Table.ColumnHeader>
-                        <Table.ColumnHeader>Záró km</Table.ColumnHeader>
-                        <Table.ColumnHeader>Megtett km</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight={"bold"}>Dátum</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight={"bold"}>Induló km</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight={"bold"}>Záró km</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight={"bold"}>Megtett km</Table.ColumnHeader>
                     </Table.Row>
                 </Table.Header>
 
