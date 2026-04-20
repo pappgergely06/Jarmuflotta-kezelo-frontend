@@ -4,7 +4,7 @@ import FuelingsTable from "./fuelings-table/FuelingsTable";
 
 function Fuelings() {
     return (
-        <GridBox header={"Menetlevelek"}>
+        <GridBox header={"Tankolások"}>
             <VStack h="calc(100% - 5vh)">
                 <FuelingsTable/>
             </VStack>
