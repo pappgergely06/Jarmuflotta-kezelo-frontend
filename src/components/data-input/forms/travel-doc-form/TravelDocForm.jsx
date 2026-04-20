@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaRoute } from "react-icons/fa6";
 import { IoIosSave } from "react-icons/io";
 
-function TravelDocForm() {
+function TravelDocForm( { width } ) {
 
     const [date, setDate] = useState("")
     const [startKm, setStartKm] = useState(0)
@@ -27,7 +27,7 @@ function TravelDocForm() {
     }
 
     return (
-        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={"25%"}>
+        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={width}>
             <HStack justifyContent={"center"}>
                 <FaRoute color="black" />
                 <Text color={"black"} fontWeight={"bold"}>Menetlevél</Text>

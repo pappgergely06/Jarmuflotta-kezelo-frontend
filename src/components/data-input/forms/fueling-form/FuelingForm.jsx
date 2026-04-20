@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BsFuelPumpFill } from "react-icons/bs";
 import { IoIosSave } from "react-icons/io";
 
-function FuelingForm() {
+function FuelingForm( { width } ) {
 
     const [date, setDate] = useState("")
     const [amountLiters, setAmountLiters] = useState(0)
@@ -27,7 +27,7 @@ function FuelingForm() {
     }
 
     return (
-        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={"25%"}>
+        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={width}>
             <HStack justifyContent={"center"}>
                 <BsFuelPumpFill color="black" />
                 <Text color={"black"} fontWeight={"bold"}>Tankolás</Text>

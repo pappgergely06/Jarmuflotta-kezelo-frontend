@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { IoIosSave } from "react-icons/io";
 
-function ServiceForm() {
+function ServiceForm( {width} ) {
 
     const [date, setDate] = useState("")
     const [type, setType] = useState("")
@@ -37,7 +37,7 @@ function ServiceForm() {
     }
 
     return (
-        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={"50%"}>
+        <Flex height={"100%"} bg={"gray.200"} borderRadius={"md"} p={"0.5rem"} flexDirection={"column"} gap={"0.5rem"} width={width}>
             <HStack justifyContent={"center"}>
                 <FaScrewdriverWrench color="black" />
                 <Text color={"black"} fontWeight={"bold"}>Szerviz</Text>

@@ -8,9 +8,9 @@ function DataInput() {
     return (
         <GridBox header={"Adatrögzítés"}>
             <HStack h="calc(100% - 5vh)" padding={"0.5rem"}>
-                <TravelDocForm/>
-                <FuelingForm/>
-                <ServiceForm/>
+                <TravelDocForm width={"25%"}/>
+                <FuelingForm width={"25%"}/>
+                <ServiceForm width={"50%"}/>
             </HStack>
         </GridBox>
     );

@@ -38,7 +38,7 @@ function Navbar() {
                                     <Popover.Arrow />
                                     <Popover.Body>
                                         <HStack justifyContent={"space-between"}>
-                                            <Popover.Title fontWeight="medium">Bejelentkezve: {user.username}</Popover.Title>
+                                            <Popover.Title fontSize={"md"} fontWeight="medium">Bejelentkezve: {user.username}</Popover.Title>
                                             <Dialog.Root size={"sm"}>
                                                 <Dialog.Trigger asChild>
                                                     <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>

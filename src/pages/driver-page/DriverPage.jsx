@@ -3,6 +3,7 @@ import style from './DriverPage.module.css'
 import Navbar from '../../components/navbar/Navbar';
 import useAuth from '../../hooks/useAuth';
 import { Navigate } from 'react-router';
+import FuelingForm from '../../components/data-input/forms/fueling-form/FuelingForm';
 
 function DriverPage() {
 
@@ -31,30 +32,24 @@ function DriverPage() {
                     >
                         <GridItem
                             bg={"gray.50"}
+                            rowSpan={2}
                             borderRadius="0.5rem"
                         >
-                            
+
                         </GridItem>
 
                         <GridItem
                             bg={"gray.50"}
                             borderRadius="0.5rem"
                         >
-                            
+
                         </GridItem>
 
                         <GridItem
                             bg={"gray.50"}
                             borderRadius="0.5rem"
                         >
-                            
-                        </GridItem>
 
-                        <GridItem
-                            bg={"gray.50"}
-                            borderRadius="0.5rem"
-                        >
-                            
                         </GridItem>
 
 
