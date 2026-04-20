@@ -1,4 +1,4 @@
-import { Flex, Grid } from '@chakra-ui/react';
+import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import style from './DriverPage.module.css'
 import Navbar from '../../components/navbar/Navbar';
 import useAuth from '../../hooks/useAuth';
@@ -10,7 +10,7 @@ function DriverPage() {
 
     return (
         <>
-            { user && user.role === "driver" &&
+            {user && user.role === "driver" &&
                 <Flex
                     width={"100%"}
                     minHeight={"100vh"}
@@ -24,11 +24,39 @@ function DriverPage() {
                     <Grid
                         w="90vw"
                         h="85vh"
-                        templateRows="repeat(3, 1fr)"
-                        templateColumns="repeat(5, 1fr)"
+                        templateRows="repeat(2, 1fr)"
+                        templateColumns="repeat(2, 1fr)"
                         gap={2}
                         fontFamily={"sans-serif"}
                     >
+                        <GridItem
+                            bg={"gray.50"}
+                            borderRadius="0.5rem"
+                        >
+                            
+                        </GridItem>
+
+                        <GridItem
+                            bg={"gray.50"}
+                            borderRadius="0.5rem"
+                        >
+                            
+                        </GridItem>
+
+                        <GridItem
+                            bg={"gray.50"}
+                            borderRadius="0.5rem"
+                        >
+                            
+                        </GridItem>
+
+                        <GridItem
+                            bg={"gray.50"}
+                            borderRadius="0.5rem"
+                        >
+                            
+                        </GridItem>
+
 
                     </Grid>
                 </Flex>
