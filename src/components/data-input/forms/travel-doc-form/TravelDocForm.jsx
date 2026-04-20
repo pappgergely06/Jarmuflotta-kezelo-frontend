@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaRoute } from "react-icons/fa6";
 import { IoIosSave } from "react-icons/io";
 
-function TravelDocForm( { width } ) {
+function TravelDocForm( { width }) {
 
     const [date, setDate] = useState("")
     const [startKm, setStartKm] = useState(0)
@@ -37,11 +37,11 @@ function TravelDocForm( { width } ) {
                 <input onChange={handleDateChange} value={date} type="date" />
             </VStack>
             <HStack width={"100%"}>
-                <VStack>
+                <VStack width={"50%"}>
                     <Text color={"black"}>Induló Km</Text>
                     <input onChange={handleStartKmChange} value={startKm} type="number" />
                 </VStack>
-                <VStack>
+                <VStack width={"50%"}>
                     <Text color={"black"}>Záró Km</Text>
                     <input onChange={handleEndKmChange} value={endKm} type="number" />
                 </VStack>
