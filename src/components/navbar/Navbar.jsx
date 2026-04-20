@@ -1,4 +1,4 @@
-import { Box, Button, CloseButton, Dialog, Drawer, Flex, IconButton, Image, Portal, Text } from "@chakra-ui/react";
+import { Box, Button, CloseButton, Dialog, Drawer, Flex, HStack, IconButton, Image, Popover, Portal, Text } from "@chakra-ui/react";
 import { CgProfile } from "react-icons/cg";
 import { FaBell } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
@@ -6,8 +6,7 @@ import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
 
-
-    const { logout } = useAuth()
+    const { user, logout } = useAuth()
 
     return (
         <Box
@@ -26,9 +25,53 @@ function Navbar() {
                     justifyContent={"space-evenly"}
                     gap={"1rem"}
                 >
-                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
-                        <CgProfile color='rgb(48, 166, 172)' />
-                    </IconButton>
+
+                    <Popover.Root lazyMount unmountOnExit>
+                        <Popover.Trigger asChild>
+                            <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
+                                <CgProfile color='rgb(48, 166, 172)' />
+                            </IconButton>
+                        </Popover.Trigger>
+                        <Portal>
+                            <Popover.Positioner>
+                                <Popover.Content bg={"#121C1E"}>
+                                    <Popover.Arrow />
+                                    <Popover.Body>
+                                        <HStack justifyContent={"space-between"}>
+                                            <Popover.Title fontWeight="medium">Bejelentkezve: {user.username}</Popover.Title>
+                                            <Dialog.Root size={"sm"}>
+                                                <Dialog.Trigger asChild>
+                                                    <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
+                                                        <LuLogOut color='rgb(48, 166, 172)' />
+                                                    </IconButton>
+                                                </Dialog.Trigger>
+                                                <Portal>
+                                                    <Dialog.Backdrop />
+                                                    <Dialog.Positioner>
+                                                        <Dialog.Content bg={'#121C1E'}>
+                                                            <Dialog.Header>
+                                                                <Dialog.Title >Kijelentkezés</Dialog.Title>
+                                                            </Dialog.Header>
+                                                            <Dialog.Body>
+                                                                <Text>Biztosan kijeletkezik?</Text>
+                                                            </Dialog.Body>
+                                                            <Dialog.Footer>
+                                                                <Dialog.ActionTrigger asChild>
+                                                                    <Button bg={"green.600"} color={"white"} variant="outline">Vissza</Button>
+                                                                </Dialog.ActionTrigger>
+                                                                <Button bg={"rgb(48, 166, 172)"} onClick={logout}>Igen</Button>
+                                                            </Dialog.Footer>
+                                                        </Dialog.Content>
+                                                    </Dialog.Positioner>
+                                                </Portal>
+                                            </Dialog.Root>
+
+                                        </HStack>
+                                    </Popover.Body>
+                                </Popover.Content>
+                            </Popover.Positioner>
+                        </Portal>
+                    </Popover.Root>
 
                     <Drawer.Root>
                         <Drawer.Trigger asChild>
@@ -56,35 +99,6 @@ function Navbar() {
                             </Drawer.Positioner>
                         </Portal>
                     </Drawer.Root>
-
-
-                    <Dialog.Root size={"sm"}>
-                        <Dialog.Trigger asChild>
-                            <IconButton variant={"ghost"} size={"xl"} rounded={"full"} bg={"transparent"}>
-                                <LuLogOut color='rgb(48, 166, 172)' />
-                            </IconButton>
-                        </Dialog.Trigger>
-                        <Portal>
-                            <Dialog.Backdrop />
-                            <Dialog.Positioner>
-                                <Dialog.Content  bg={'#121C1E'}>
-                                    <Dialog.Header>
-                                        <Dialog.Title >Kijelentkezés</Dialog.Title>
-                                    </Dialog.Header>
-                                    <Dialog.Body>
-                                        <Text>Biztosan kijeletkezik?</Text>
-                                    </Dialog.Body>
-                                    <Dialog.Footer>
-                                        <Dialog.ActionTrigger asChild>
-                                            <Button bg={"green.600"} color={"white"} variant="outline">Vissza</Button>
-                                        </Dialog.ActionTrigger>
-                                        <Button bg={"rgb(48, 166, 172)"} onClick={logout}>Igen</Button>
-                                    </Dialog.Footer>
-                                </Dialog.Content>
-                            </Dialog.Positioner>
-                        </Portal>
-                    </Dialog.Root>
-
 
                 </Flex>
             </Flex>
