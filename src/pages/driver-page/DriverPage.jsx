@@ -2,10 +2,10 @@ import { Flex, Grid, GridItem } from '@chakra-ui/react';
 import style from './DriverPage.module.css'
 import Navbar from '../../components/navbar/Navbar';
 import useAuth from '../../hooks/useAuth';
-import { Navigate } from 'react-router';
 import FuelingForm from '../../components/data-input/forms/fueling-form/FuelingForm';
 import GridBox from '../../components/ui/grid-box/GridBox';
 import TravelDocForm from '../../components/data-input/forms/travel-doc-form/TravelDocForm';
+import MyVehicle from '../../components/my-vehicle/MyVehicle';
 
 function DriverPage() {
 
@@ -36,9 +36,7 @@ function DriverPage() {
                             bg={"gray.50"}
                             borderRadius="0.5rem"
                         >
-                            <GridBox header={"Autóm"}>
-
-                            </GridBox>
+                            <MyVehicle/>
                         </GridItem>
 
                         <GridItem
