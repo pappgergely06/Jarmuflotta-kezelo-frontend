@@ -23,7 +23,7 @@ function AdminPage() {
                 justifyContent={"center"}
                 bg={'rgb(48, 166, 172)'}
             >
-                <Navbar/>
+                <Navbar width={"90vw"}/>
                 <Grid
                     w="90vw"
                     h="85vh"

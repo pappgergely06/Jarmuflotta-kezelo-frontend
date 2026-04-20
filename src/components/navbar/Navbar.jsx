@@ -4,7 +4,7 @@ import { FaBell } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
 import useAuth from "../../hooks/useAuth";
 
-function Navbar() {
+function Navbar( { width } ) {
 
     const { user, logout } = useAuth()
 
@@ -13,7 +13,7 @@ function Navbar() {
             bg="#121C1E"
             colSpan={3}
             marginBottom={2}
-            w="90vw"
+            w={width}
             h="10vh"
             borderRadius="0.5rem"
         >

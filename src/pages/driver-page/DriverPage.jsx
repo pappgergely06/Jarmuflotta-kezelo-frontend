@@ -21,9 +21,9 @@ function DriverPage() {
                     justifyContent={"center"}
                     bg={'rgb(48, 166, 172)'}
                 >
-                    <Navbar />
+                    <Navbar width={"80vw"} />
                     <Grid
-                        w="90vw"
+                        w="80vw"
                         h="85vh"
                         templateRows="repeat(2, 1fr)"
                         templateColumns="repeat(2, 1fr)"
