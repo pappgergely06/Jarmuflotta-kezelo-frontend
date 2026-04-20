@@ -113,13 +113,13 @@ function DriverTable() {
       <Table.Root size="md" stickyHeader interactive>
         <Table.Header bg="gray.200">
           <Table.Row>
-            <Table.ColumnHeader>Név</Table.ColumnHeader>
-            <Table.ColumnHeader>Autó</Table.ColumnHeader>
-            <Table.ColumnHeader>Jogosítvány száma</Table.ColumnHeader>
-            <Table.ColumnHeader>Telefonszám</Table.ColumnHeader>
-            <Table.ColumnHeader>Email</Table.ColumnHeader>
-            <Table.ColumnHeader>Lakcím</Table.ColumnHeader>
-            <Table.ColumnHeader>Kezdés dátum</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Név</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Autó</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Jogosítvány száma</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Telefonszám</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Email</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Lakcím</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Kezdés dátum</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
 

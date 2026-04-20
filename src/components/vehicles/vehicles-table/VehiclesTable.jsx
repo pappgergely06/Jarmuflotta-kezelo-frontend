@@ -151,14 +151,14 @@ function VehiclesTable() {
       <Table.Root size="md" stickyHeader interactive>
         <Table.Header bg="gray.200">
           <Table.Row>
-            <Table.ColumnHeader>Rendszám</Table.ColumnHeader>
-            <Table.ColumnHeader>Alvázszám</Table.ColumnHeader>
-            <Table.ColumnHeader>Évjárat</Table.ColumnHeader>
-            <Table.ColumnHeader>Márka</Table.ColumnHeader>
-            <Table.ColumnHeader>Típus</Table.ColumnHeader>
-            <Table.ColumnHeader>Óraállás</Table.ColumnHeader>
-            <Table.ColumnHeader>Kötelező biztosítás</Table.ColumnHeader>
-            <Table.ColumnHeader>Műszaki vizsga</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Rendszám</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Alvázszám</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Évjárat</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Márka</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Típus</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Óraállás</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Kötelező biztosítás</Table.ColumnHeader>
+            <Table.ColumnHeader fontWeight={"bold"}>Műszaki vizsga</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
 
