@@ -8,6 +8,7 @@ import TravelDocForm from '../../components/data-input/forms/travel-doc-form/Tra
 import MyVehicle from '../../components/my-vehicle/MyVehicle';
 import TravelDocs from '../../components/travel-docs/TravelDocs';
 import MyData from '../../components/my-data/MyData';
+import Fuelings from '../../components/fuelings/Fuelings';
 
 function DriverPage() {
     const { user } = useAuth();
@@ -43,7 +44,7 @@ function DriverPage() {
                         </GridItem>
 
                         <GridItem bg={"gray.50"}  borderRadius="0.5rem" overflow="hidden">
-                            <GridBox header={"Tankolások"} />
+                            <Fuelings/>
                         </GridItem>
 
                         <GridItem bg={"gray.50"} borderRadius="0.5rem" overflow="hidden">
