@@ -40,7 +40,6 @@ function LoginForm() {
                     <Input
                         bg='gray.50'
                         type="text"
-                        placeholder="felhasznalonev"
                         focusBorderColor="blue.400"
                         onChange={(event) => setUserName(event.target.value)}
                     />
@@ -54,7 +53,6 @@ function LoginForm() {
                         onKeyDown={handleKeyDown}
                         bg='gray.50'
                         type="password"
-                        placeholder="*******"
                         focusBorderColor="blue.400"
                         onChange={(event) => setPassword(event.target.value)}
                     />
