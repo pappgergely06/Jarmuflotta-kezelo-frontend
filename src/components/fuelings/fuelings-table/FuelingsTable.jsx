@@ -19,7 +19,7 @@ function FuelingsTable() {
     const [selectedId, setSelectedId] = useState(null)
 
     function calcPrice(price_per_liter, amount_liters) {
-        return price_per_liter * amount_liters
+        return Math.round(price_per_liter * amount_liters)
     }
     return (
         <Table.ScrollArea color="black" maxHeight={"100%"} w="100%">
