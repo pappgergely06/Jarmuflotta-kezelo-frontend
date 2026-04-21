@@ -11,9 +11,10 @@ import { Navigate } from 'react-router';
 
 function AdminPage() {
 
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
     return (
         <>
+        {!user || user.role !== "admin" && logout()}
         {user && user.role === "admin" && <Flex
                 width={"100%"}
                 minHeight={"100vh"}

@@ -11,10 +11,11 @@ import MyData from '../../components/my-data/MyData';
 import Fuelings from '../../components/fuelings/Fuelings';
 
 function DriverPage() {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
 
     return (
         <>
+            {!user || user.role !== "driver" && logout()}
             {user && user.role === "driver" && (
                 <Flex
                     width={"100vw"}
