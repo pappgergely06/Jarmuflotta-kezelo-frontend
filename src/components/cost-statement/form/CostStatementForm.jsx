@@ -8,7 +8,7 @@ function CostStatementForm() {
 
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
-    const [typeOfQuery, setTypeOfQuery] = useState("")
+    const [typeOfQuery, setTypeOfQuery] = useState("all")
 
     function handleStartDateChange(event) {
         setStartDate(event.target.value)
@@ -19,7 +19,7 @@ function CostStatementForm() {
     }
 
     function handleTypeofQueryChange(event) {
-        setTypeOfQuery(event.target.value)
+        setTypeOfQuery(event.value)
     }
 
     function sendCostStatement() {
@@ -38,7 +38,7 @@ function CostStatementForm() {
                     <input onChange={handleEndDateChange} value={endDate} type="date" />
                 </VStack>
             </HStack>
-            <RadioGroup.Root colorPalette={"blue"} variant={"solid"} size={"lg"} defaultValue={"all"}>
+            <RadioGroup.Root colorPalette={"blue"} variant={"solid"} size={"lg"} value={typeOfQuery} defaultValue={"all"} onValueChange={handleTypeofQueryChange}>
                 <VStack alignItems={"center"} width={"100%"}>
                         <RadioGroup.Item value="all">
                             <RadioGroup.ItemHiddenInput />
