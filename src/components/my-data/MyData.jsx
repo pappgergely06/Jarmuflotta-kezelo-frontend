@@ -1,12 +1,13 @@
-import { VStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import GridBox from "../ui/grid-box/GridBox";
+import MyDataTable from "./my-data-table/MyDataTable";
 
 function MyData() {
     return (
         <GridBox header={"Saját adatok"}>
-            <VStack h="calc(100% - 5vh)" padding="0.5rem">
-                
-            </VStack>
+            <Box h="calc(100% - 5vh)" overflowY={"auto"}>
+                <MyDataTable/>
+            </Box>
         </GridBox>
     );
 }
