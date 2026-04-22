@@ -1,5 +1,6 @@
 import { Table } from "@chakra-ui/react";
 import { useState } from "react";
+import DateFormatter from "../../ui/date-formatter/DateFormatter";
 
 function FuelingsTable() {
 
@@ -55,7 +56,9 @@ function FuelingsTable() {
                                 _hover={{ bg: "gray.100" }}
                                 transition="background 0.2s"
                             >
-                                <Table.Cell>{fueling.date}</Table.Cell>
+                                <Table.Cell>
+                                    <DateFormatter dateString={fueling.date}/>
+                                </Table.Cell>
                                 <Table.Cell>{fueling.amount_liters}l</Table.Cell>
                                 <Table.Cell>{fueling.price_per_liter}Ft/l</Table.Cell>
                                 <Table.Cell>{

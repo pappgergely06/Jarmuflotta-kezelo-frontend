@@ -1,5 +1,6 @@
 import { Table } from "@chakra-ui/react";
 import { useState } from "react";
+import DateFormatter from "../../ui/date-formatter/DateFormatter";
 
 function TravelDocsTable() {
 
@@ -53,7 +54,9 @@ function TravelDocsTable() {
                                 _hover={{ bg: "gray.100" }}
                                 transition="background 0.2s"
                             >
-                                <Table.Cell>{doc.date}</Table.Cell>
+                                <Table.Cell>
+                                    <DateFormatter dateString={doc.date}/>
+                                </Table.Cell>
                                 <Table.Cell>{doc.start_km}km</Table.Cell>
                                 <Table.Cell>{doc.end_km}km</Table.Cell>
                                 <Table.Cell>{

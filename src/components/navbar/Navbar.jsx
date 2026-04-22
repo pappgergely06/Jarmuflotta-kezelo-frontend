@@ -88,8 +88,7 @@ function Navbar( { width } ) {
                                     </Drawer.Header>
                                     <Drawer.Body>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            Fejlesztés alatt!
                                         </p>
                                     </Drawer.Body>
                                     <Drawer.CloseTrigger asChild>
