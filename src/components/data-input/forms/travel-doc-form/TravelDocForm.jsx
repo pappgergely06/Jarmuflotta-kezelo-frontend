@@ -22,7 +22,7 @@ function TravelDocForm({ width }) {
 
     const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id
 
-    useEffect(() => {
+    const getCurrentOdometer = async () => {
         fetchVehicleById(token, vehicle_id)
             .then((data) => {
                 return (
@@ -30,6 +30,10 @@ function TravelDocForm({ width }) {
                     setEndKm(data.start_odometer + 1)
                 )
             })
+    }
+
+    useEffect(() => {
+        getCurrentOdometer()
     }, [])
 
     const token = Cookies.get("auth_token")
@@ -55,9 +59,8 @@ function TravelDocForm({ width }) {
     }
 
     function clearForm() {
-        setDate("")
-        setStartKm(0)
-        setEndKm(0)
+        setDate(today)
+        getCurrentOdometer()
         setError(null)
     }
 
