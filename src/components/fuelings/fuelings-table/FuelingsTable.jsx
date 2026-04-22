@@ -1,23 +1,20 @@
 import { Table } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
+import { fetchFuelings } from "../../../utils/api";
+import Cookies from "js-cookie";
 
 function FuelingsTable() {
 
-    const [fuelings, setFuelings] = useState([
-        { id: 1, date: '2024-01-05', amount_liters: 42.5, price_per_liter: 595 },
-        { id: 2, date: '2024-01-18', amount_liters: 38.0, price_per_liter: 602 },
-        { id: 3, date: '2024-02-02', amount_liters: 45.2, price_per_liter: 615 },
-        { id: 4, date: '2024-02-15', amount_liters: 40.5, price_per_liter: 610 },
-        { id: 5, date: '2024-03-01', amount_liters: 48.0, price_per_liter: 625 },
-        { id: 6, date: '2024-03-14', amount_liters: 35.5, price_per_liter: 630 },
-        { id: 7, date: '2024-03-28', amount_liters: 44.8, price_per_liter: 618 },
-        { id: 8, date: '2024-04-10', amount_liters: 39.2, price_per_liter: 605 },
-        { id: 9, date: '2024-04-25', amount_liters: 41.0, price_per_liter: 598 },
-        { id: 10, date: '2024-05-08', amount_liters: 46.5, price_per_liter: 608 }
-    ]);
+    const [fuelings, setFuelings] = useState([]);
 
     const [selectedId, setSelectedId] = useState(null)
+
+    useEffect(() => {
+        fetchFuelings(Cookies.get("auth_token"))
+            .then((data) => setFuelings(data))
+            .catch((error) => console.error(error))
+    })
 
     function calcPrice(price_per_liter, amount_liters) {
         return Math.round(price_per_liter * amount_liters)

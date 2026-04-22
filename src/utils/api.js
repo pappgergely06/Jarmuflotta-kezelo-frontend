@@ -85,7 +85,7 @@ export async function fetchVehicles(token) {
 export async function fetchTravelDocs(token) {
     try {
 
-        const response = await axios.get(API_URL + "travel-logs/", {
+        const response = await axios.get(API_URL + "travel-logs", {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -102,3 +102,22 @@ export async function fetchTravelDocs(token) {
     }
 }
 
+export async function fetchFuelings(token) {
+    try {
+
+        const response = await axios.get(API_URL + "fuelings", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
