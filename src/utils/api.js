@@ -102,6 +102,26 @@ export async function fetchVehicles(token) {
     }
 }
 
+export async function fetchVehicleById(token, id) {
+    try {
+
+        const response = await axios.get(API_URL + `vehicles/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
 export async function fetchTravelDocs(token) {
     try {
 
