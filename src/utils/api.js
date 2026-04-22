@@ -142,36 +142,15 @@ export async function fetchFuelings(token) {
     }
 }
 
-export async function fetchAssignmentByDriverId(token, id) {
-    try {
-
-        const response = await axios.get(API_URL + `driver-assignments/driver/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
 //POSTS
 
 export async function addTravelDoc(token, body) {
     try {
 
-        const response = await axios.post(API_URL + "travel-logs", {
+        const response = await axios.post(API_URL + "travel-logs", body, {
             headers: {
                 'Authorization': `Bearer ${token}`
-            },
-            body
+            }
         })
 
         return response.data
