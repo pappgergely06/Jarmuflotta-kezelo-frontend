@@ -2,7 +2,7 @@ import axios from "axios"
 
 const API_URL = "https://flotta.vbdev.hu/api/"
 
-
+//AUTH
 export async function fetchToken(username, password) {
     try {
 
@@ -46,6 +46,26 @@ export async function fetchDrivers(token) {
     try {
 
         const response = await axios.get(API_URL + "drivers", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
+export async function fetchDriverById(token, id) {
+    try {
+
+        const response = await axios.get(API_URL + `drivers/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -109,6 +129,49 @@ export async function fetchFuelings(token) {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
+export async function fetchAssignmentByDriverId(token, id) {
+    try {
+
+        const response = await axios.get(API_URL + `driver-assignments/driver/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
+//POSTS
+
+export async function addTravelDoc(token, body) {
+    try {
+
+        const response = await axios.post(API_URL + "travel-logs", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            body
         })
 
         return response.data
