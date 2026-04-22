@@ -6,10 +6,12 @@ import { IoIosSave } from "react-icons/io";
 import { addTravelDoc } from "../../../../utils/api";
 import Cookies from "js-cookie";
 import useAuth from "../../../../hooks/useAuth";
+import useSelectedVehicle from "../../../../hooks/useSelectedVehicle";
 
 function TravelDocForm({ width }) {
 
     const { user } = useAuth()
+    const { selectedVehicle } = useSelectedVehicle()
 
     const [date, setDate] = useState("")
     const [startKm, setStartKm] = useState(0)
@@ -29,6 +31,7 @@ function TravelDocForm({ width }) {
     }
 
     function validateTravelDoc() {
+        if(user.role === "admin" && selectedVehicle === null) return "Válasszon ki járművet a táblázatból!"
         if (!date) return "Dátum megadása kötelező!";
         if (!startKm || !endKm) return "A kilométer óra állások kitöltése kötelező!";
         if (Number(endKm) <= Number(startKm)) return "A záró km nem lehet kevesebb az induló km-nél!";
@@ -44,12 +47,13 @@ function TravelDocForm({ width }) {
 
     function saveTravelDoc() {
         const e = validateTravelDoc()
+        const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id
         if (e === null) {
             addTravelDoc(Cookies.get("auth_token"), {
                 "date": date,
                 "start_km": startKm,
                 "end_km": endKm,
-                "vehicle_id": user.driver_vehicle_id
+                "vehicle_id": vehicle_id
             })
             clearForm()
         } else {

@@ -7,18 +7,21 @@ import DriverPage from './pages/driver-page/DriverPage'
 import NotFound from './pages/not-found/NotFound'
 import AuthProvider from './contexts/auth/AuthProvider'
 import { Provider } from './components/ui/chakra/provider'
+import SelectedVehicleProvider from './contexts/selected-vehicle/SelectedVehicleProvider'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider>
       <AuthProvider>
-        <Routes>
-          <Route path='/' element={<Navigate to="/login" replace />} />
-          <Route path='login' element={<LoginPage />} />
-          <Route path='admin' element={<AdminPage />} />
-          <Route path='driver' element={<DriverPage />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <SelectedVehicleProvider>
+          <Routes>
+            <Route path='/' element={<Navigate to="/login" replace />} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='admin' element={<AdminPage />} />
+            <Route path='driver' element={<DriverPage />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </SelectedVehicleProvider>
       </AuthProvider>
     </Provider>
   </BrowserRouter>

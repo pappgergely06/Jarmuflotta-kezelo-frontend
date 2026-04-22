@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { fetchVehicles } from "../../../utils/api";
 import Cookies from "js-cookie";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
+import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 
 function VehiclesTable() {
 
-  const [selectedId, setSelectedId] = useState(null)
+  const {selectedVehicle, setSelectedVehicle} = useSelectedVehicle()
 
   const [vehicles, setVehicles] = useState([])
 
@@ -40,12 +41,12 @@ function VehiclesTable() {
 
         <Table.Body>
           {vehicles.map((vehicle) => {
-            const isSelected = selectedId === vehicle.vehicle_id
+            const isSelected = selectedVehicle === vehicle.vehicle_id
 
             return (
               <Table.Row
                 key={vehicle.vehicle_id}
-                onClick={() => setSelectedId(isSelected ? null : vehicle.vehicle_id)}
+                onClick={() => setSelectedVehicle(isSelected ? null : vehicle.vehicle_id)}
                 cursor="pointer"
                 data-selected={isSelected ? "" : undefined}
                 _selected={{
