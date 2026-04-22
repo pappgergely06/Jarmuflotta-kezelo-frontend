@@ -2,6 +2,7 @@ import { Table } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { fetchDrivers } from "../../../utils/api";
 import Cookies from "js-cookie";
+import DateFormatter from "../../ui/date-formatter/DateFormatter";
 
 function DriverTable() {
 
@@ -58,7 +59,9 @@ function DriverTable() {
                 <Table.Cell>{driver.phone}</Table.Cell>
                 <Table.Cell>{driver.email}</Table.Cell>
                 <Table.Cell>{driver.address}</Table.Cell>
-                <Table.Cell>{driver.starting_date}</Table.Cell>
+                <Table.Cell>
+                  <DateFormatter dateString={driver.starting_date}/>
+                </Table.Cell>
               </Table.Row>
             )
           })}

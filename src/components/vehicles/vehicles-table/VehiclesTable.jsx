@@ -2,6 +2,7 @@ import { Table } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { fetchVehicles } from "../../../utils/api";
 import Cookies from "js-cookie";
+import DateFormatter from "../../ui/date-formatter/DateFormatter";
 
 function VehiclesTable() {
 
@@ -11,8 +12,8 @@ function VehiclesTable() {
 
   useEffect(() => {
     fetchVehicles(Cookies.get("auth_token"))
-    .then((data) => setVehicles(data))
-    .catch((error) => console.error(error))
+      .then((data) => setVehicles(data))
+      .catch((error) => console.error(error))
   })
 
   return (
@@ -64,8 +65,12 @@ function VehiclesTable() {
                 <Table.Cell>{vehicle.brand}</Table.Cell>
                 <Table.Cell>{vehicle.model}</Table.Cell>
                 <Table.Cell>{vehicle.start_odometer} km</Table.Cell>
-                <Table.Cell>{vehicle.insurance_expiry}</Table.Cell>
-                <Table.Cell>{vehicle.next_technical_exam}</Table.Cell>
+                <Table.Cell>
+                  <DateFormatter dateString={vehicle.insurance_expiry} />
+                </Table.Cell>
+                <Table.Cell>
+                  <DateFormatter dateString={vehicle.next_technical_exam} />
+                </Table.Cell>
               </Table.Row>
             )
           })}
