@@ -183,3 +183,24 @@ export async function addTravelDoc(token, body) {
         }
     }
 }
+
+export async function addFueling(token, body) {
+    try {
+
+        const response = await axios.post(API_URL + "fuelings", body, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+

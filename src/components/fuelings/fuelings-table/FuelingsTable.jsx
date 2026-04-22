@@ -14,7 +14,7 @@ function FuelingsTable() {
         fetchFuelings(Cookies.get("auth_token"))
             .then((data) => setFuelings(data))
             .catch((error) => console.error(error))
-    })
+    }, [fuelings])
 
     function calcPrice(price_per_liter, amount_liters) {
         return Math.round(price_per_liter * amount_liters)
@@ -33,12 +33,12 @@ function FuelingsTable() {
 
                 <Table.Body>
                     {fuelings.map((fueling) => {
-                        const isSelected = selectedId === fueling.id
+                        const isSelected = selectedId === fueling.fueling_id
 
                         return (
                             <Table.Row
-                                key={fueling.id}
-                                onClick={() => setSelectedId(isSelected ? null : fueling.id)}
+                                key={fueling.fueling_id}
+                                onClick={() => setSelectedId(isSelected ? null : fueling.fueling_id)}
                                 cursor="pointer"
                                 data-selected={isSelected ? "" : undefined}
 
