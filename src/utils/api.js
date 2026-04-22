@@ -45,7 +45,7 @@ export async function fetchUser(token) {
 export async function fetchDrivers(token) {
     try {
 
-        const response = await axios.get(API_URL + "drivers/", {
+        const response = await axios.get(API_URL + "drivers", {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -65,7 +65,7 @@ export async function fetchDrivers(token) {
 export async function fetchVehicles(token) {
     try {
 
-        const response = await axios.get(API_URL + "vehicles/", {
+        const response = await axios.get(API_URL + "vehicles", {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -81,3 +81,24 @@ export async function fetchVehicles(token) {
         }
     }
 }
+
+export async function fetchTravelDocs(token) {
+    try {
+
+        const response = await axios.get(API_URL + "travel-logs/", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+

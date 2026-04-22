@@ -1,21 +1,20 @@
 import { Table } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
+import { fetchTravelDocs } from "../../../utils/api";
+import Cookies from "js-cookie"
 
 function TravelDocsTable() {
 
-    const [travelDocs, setTravelDocs] = useState([
-        { id: 1, date: '2024-05-01', start_km: 10000, end_km: 10150 },
-        { id: 2, date: '2024-05-03', start_km: 10150, end_km: 10220 },
-        { id: 3, date: '2024-05-05', start_km: 10220, end_km: 10400 },
-        { id: 4, date: '2024-05-08', start_km: 10400, end_km: 10410 },
-        { id: 5, date: '2024-05-10', start_km: 10410, end_km: 10600 },
-        { id: 6, date: '2024-05-12', start_km: 10600, end_km: 10750 },
-        { id: 7, date: '2024-05-15', start_km: 10750, end_km: 10800 },
-        { id: 8, date: '2024-05-20', start_km: 10800, end_km: 11050 },
-    ]);
+    const [travelDocs, setTravelDocs] = useState([]);
 
     const [selectedId, setSelectedId] = useState(null)
+
+    useEffect(() => {
+        fetchTravelDocs(Cookies.get("auth_token"))
+        .then((data) => setTravelDocs(data))
+        .catch((error) => console.error(error))
+    }, [])
 
     function calcDistance(start, end) {
         return end - start
