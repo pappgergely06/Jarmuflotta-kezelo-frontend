@@ -14,7 +14,7 @@ function TravelDocsTable() {
         fetchTravelDocs(Cookies.get("auth_token"))
             .then((data) => setTravelDocs(data))
             .catch((error) => console.error(error))
-    }, [])
+    }, [travelDocs])
 
     function calcDistance(start, end) {
         return end - start
