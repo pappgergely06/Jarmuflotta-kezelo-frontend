@@ -204,3 +204,23 @@ export async function addFueling(token, body) {
     }
 }
 
+//PUT
+export async function updateOdometer(token, id, body) {
+    try {
+
+        const response = await axios.post(API_URL + `vehicles/${id}`, body, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
