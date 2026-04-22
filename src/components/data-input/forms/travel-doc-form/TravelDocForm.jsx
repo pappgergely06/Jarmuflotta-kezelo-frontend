@@ -1,4 +1,4 @@
-import { Flex, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Alert, Box, Flex, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 import "../../../forms-style/FormsStyle.module.css"
 import { useState } from "react";
 import { FaRoute } from "react-icons/fa6";
@@ -14,6 +14,7 @@ function TravelDocForm({ width }) {
     const [date, setDate] = useState("")
     const [startKm, setStartKm] = useState(0)
     const [endKm, setEndKm] = useState(0)
+    const [error, setError] = useState(null)
 
     function handleDateChange(event) {
         setDate(event.target.value)
@@ -27,13 +28,26 @@ function TravelDocForm({ width }) {
         setEndKm(event.target.value)
     }
 
+    function validateTravelDoc() {
+        if (!date) return "Dátum megadása kötelező!";
+        if (!startKm || !endKm) return "A kilométer óra állások kitöltése kötelező!";
+        if (Number(endKm) <= Number(startKm)) return "A záró km nem lehet kevesebb az induló km-nél!";
+        return null;
+    }
+
     function saveTravelDoc() {
-        addTravelDoc(Cookies.get("auth_token"), {
-            "date": date,
-            "start_km": startKm,
-            "end_km": endKm,
-            "vehicle_id": user.driver_vehicle_id
-        })
+        const e = validateTravelDoc()
+        if (e === null) {
+            addTravelDoc(Cookies.get("auth_token"), {
+                "date": date,
+                "start_km": startKm,
+                "end_km": endKm,
+                "vehicle_id": user.driver_vehicle_id
+            })
+        } else {
+            setError(e)
+        }
+
     }
 
     return (
@@ -56,6 +70,18 @@ function TravelDocForm({ width }) {
                     <input onChange={handleEndKmChange} value={endKm} type="number" />
                 </VStack>
             </HStack>
+            {
+                error !== null && (
+                    <Box>
+                        <Alert.Root status="error">
+                            <Alert.Indicator />
+                            <Alert.Title>
+                                {error}
+                            </Alert.Title>
+                        </Alert.Root>
+                    </Box>
+                )
+            }
             <IconButton onClick={saveTravelDoc} bg={"green.600"}>
                 <IoIosSave />
                 <Text>Rögzít</Text>

@@ -43,7 +43,6 @@ function AuthProvider({ children }) {
             });
 
             const userData = await fetchUser(data.token);
-            console.log(userData)
             setUser(userData)
 
             if (userData.role === "admin") {
