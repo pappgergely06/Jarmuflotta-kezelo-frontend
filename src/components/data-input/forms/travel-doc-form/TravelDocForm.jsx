@@ -35,6 +35,13 @@ function TravelDocForm({ width }) {
         return null;
     }
 
+    function clearForm() {
+        setDate("")
+        setStartKm(0)
+        setEndKm(0)
+        setError(null)
+    }
+
     function saveTravelDoc() {
         const e = validateTravelDoc()
         if (e === null) {
@@ -44,6 +51,7 @@ function TravelDocForm({ width }) {
                 "end_km": endKm,
                 "vehicle_id": user.driver_vehicle_id
             })
+            clearForm()
         } else {
             setError(e)
         }

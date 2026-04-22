@@ -12,8 +12,8 @@ function TravelDocsTable() {
 
     useEffect(() => {
         fetchTravelDocs(Cookies.get("auth_token"))
-        .then((data) => setTravelDocs(data))
-        .catch((error) => console.error(error))
+            .then((data) => setTravelDocs(data))
+            .catch((error) => console.error(error))
     }, [])
 
     function calcDistance(start, end) {
@@ -33,12 +33,12 @@ function TravelDocsTable() {
 
                 <Table.Body>
                     {travelDocs.map((doc) => {
-                        const isSelected = selectedId === doc.id
+                        const isSelected = selectedId === doc.log_id
 
                         return (
                             <Table.Row
-                                key={doc.id}
-                                onClick={() => setSelectedId(isSelected ? null : doc.id)}
+                                key={doc.log_id}
+                                onClick={() => setSelectedId(isSelected ? null : doc.log_id)}
                                 cursor="pointer"
                                 data-selected={isSelected ? "" : undefined}
 
@@ -54,7 +54,7 @@ function TravelDocsTable() {
                                 transition="background 0.2s"
                             >
                                 <Table.Cell>
-                                    <DateFormatter dateString={doc.date}/>
+                                    <DateFormatter dateString={doc.date} />
                                 </Table.Cell>
                                 <Table.Cell>{doc.start_km}km</Table.Cell>
                                 <Table.Cell>{doc.end_km}km</Table.Cell>
