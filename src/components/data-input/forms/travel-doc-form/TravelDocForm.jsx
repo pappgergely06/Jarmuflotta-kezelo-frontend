@@ -66,23 +66,29 @@ function TravelDocForm({ width }) {
         setError(null)
     }
 
-    function saveTravelDoc() {
-        const e = validateTravelDoc()
+    async function saveTravelDoc() {
+        const e = validateTravelDoc();
         if (e === null) {
-            addTravelDoc(token, {
-                "date": date,
-                "start_km": startKm,
-                "end_km": endKm,
-                "vehicle_id": vehicle_id
-            })
-            updateOdometer(token, vehicle_id, {
-                "start_odometer": endKm
-            })
-            clearForm()
-        } else {
-            setError(e)
-        }
+            try {
+                await addTravelDoc(token, {
+                    "date": date,
+                    "start_km": startKm,
+                    "end_km": endKm,
+                    "vehicle_id": vehicle_id
+                });
 
+                await updateOdometer(token, vehicle_id, {
+                    "start_odometer": endKm
+                });
+
+                clearForm();
+            } catch (err) {
+                setError("Hiba történt a mentés során.");
+                console.error(err);
+            }
+        } else {
+            setError(e);
+        }
     }
 
     return (

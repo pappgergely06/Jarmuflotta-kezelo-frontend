@@ -3,6 +3,7 @@ import GridBox from "../ui/grid-box/GridBox";
 import VehiclesTable from "./vehicles-table/VehiclesTable";
 import { FaCar } from "react-icons/fa6";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { BsFillClipboard2DataFill } from "react-icons/bs";
 
 function Vehicles() {
     return (
@@ -13,6 +14,11 @@ function Vehicles() {
                 <VehiclesTable />
 
                 <Stack flexDirection={"row"}>
+
+                    <IconButton px={"0.5rem"} h={"2rem"} bg={"blue.600"}>
+                        <BsFillClipboard2DataFill />
+                        <Text fontSize={"sm"}>Rögzített adatok</Text>
+                    </IconButton>
 
                     <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
                         <FaCar />
