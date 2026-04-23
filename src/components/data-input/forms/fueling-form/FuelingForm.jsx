@@ -13,9 +13,11 @@ function FuelingForm({ width }) {
     const { user } = useAuth()
     const { selectedVehicle } = useSelectedVehicle()
 
-    const [date, setDate] = useState("")
-    const [amountLiters, setAmountLiters] = useState(0)
-    const [pricePerLiter, setPricePerLiter] = useState(0)
+    const today = new Date().toISOString().split('T')[0];
+
+    const [date, setDate] = useState(today)
+    const [amountLiters, setAmountLiters] = useState(5)
+    const [pricePerLiter, setPricePerLiter] = useState(100)
     const [error, setError] = useState(null)
 
     function handleDateChange(event) {
@@ -31,17 +33,17 @@ function FuelingForm({ width }) {
     }
 
     function clearForm() {
-        setDate("")
-        setAmountLiters(0)
-        setPricePerLiter(0)
+        setDate(today)
+        setAmountLiters(5)
+        setPricePerLiter(100)
         setError(null)
     }
 
     function validateFueling() {
-        if(user.role === "admin" && selectedVehicle === null) return "Válasszon ki járművet a táblázatból!"
+        if (user.role === "admin" && selectedVehicle === null) return "Válasszon ki járművet a táblázatból!"
         if (!date) return "Dátum megadása kötelező!!";
         if (amountLiters < 5) return "5 liter alatti tankolás nem rögzíthető!";
-        if (pricePerLiter <= 0) return "Érvénytelen literenkénti ár!";
+        if (pricePerLiter < 100) return "Érvénytelen literenkénti ár!";
         return null;
     }
 
@@ -69,16 +71,16 @@ function FuelingForm({ width }) {
             </HStack>
             <VStack width={"100%"}>
                 <Text color={"black"}>Dátum</Text>
-                <input onChange={handleDateChange} value={date} type="date" />
+                <input min={today} onChange={handleDateChange} value={date} type="date" />
             </VStack>
             <HStack width={"100%"}>
                 <VStack width={"50%"}>
                     <Text color={"black"}>Tankolt Literek</Text>
-                    <input onChange={handleAmountLitersChange} value={amountLiters} type="number" />
+                    <input min={1} onChange={handleAmountLitersChange} value={amountLiters} type="number" />
                 </VStack>
                 <VStack width={"50%"}>
                     <Text color={"black"}>Literenkénti Ár</Text>
-                    <input onChange={handlePricePerLiterChange} value={pricePerLiter} type="number" />
+                    <input min={1} onChange={handlePricePerLiterChange} value={pricePerLiter} type="number" />
                 </VStack>
             </HStack>
             {
