@@ -12,10 +12,10 @@ function Drivers() {
     
     const handleDelete = async () => {
         if (!selectedId){
-            return alert("Válassz ki egy sofőrt!");
+            return alert("Válasszon sofőrt a táblázatból!");
         }
 
-        if (window.confirm("Biztosan törlöd?")) {
+        if (window.confirm("Biztosan törli?")) {
             try {
                 await deleteDriverById(Cookies.get("auth_token"), selectedId);
                 setSelectedId(null);

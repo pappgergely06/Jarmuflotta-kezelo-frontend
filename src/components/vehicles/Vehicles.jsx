@@ -1,11 +1,30 @@
-import { VStack, Text, Stack, IconButton } from "@chakra-ui/react";
+import { VStack, Text, Stack, IconButton, Dialog, Portal, CloseButton, Alert, Box } from "@chakra-ui/react";
 import GridBox from "../ui/grid-box/GridBox";
 import VehiclesTable from "./vehicles-table/VehiclesTable";
 import { FaCar } from "react-icons/fa6";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
+import useSelectedVehicle from "../../hooks/useSelectedVehicle";
 
 function Vehicles() {
+
+    const { selectedVehicle, setSelectedVehicle } = useSelectedVehicle()
+
+    const handleDelete = async () => {
+        if (selectedVehicle === null) {
+            return alert("Válasszon járművet a táblázatból!");
+        }
+
+        if (window.confirm("Biztosan törli?")) {
+            try {
+                await deleteVehicleById(Cookies.get("auth_token"), selectedVehicle);
+                setSelectedVehicle(null)
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    };
+
     return (
         <GridBox header={"Járművek"}>
 
@@ -15,22 +34,116 @@ function Vehicles() {
 
                 <Stack flexDirection={"row"}>
 
-                    <IconButton px={"0.5rem"} h={"2rem"} bg={"blue.600"}>
-                        <BsFillClipboard2DataFill />
-                        <Text fontSize={"sm"}>Rögzített adatok</Text>
-                    </IconButton>
 
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
-                        <FaCar />
-                        <Text fontSize={"sm"}>Új jármű rögzítése</Text>
-                    </IconButton>
 
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
-                        <FaEdit />
-                        <Text fontSize={"sm"}>Szerkesztés</Text>
-                    </IconButton>
+                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                        <Dialog.Trigger asChild>
+                            <IconButton px={"0.5rem"} h={"2rem"} bg={"blue.600"}>
+                                <BsFillClipboard2DataFill />
+                                <Text fontSize={"sm"}>Rögzített adatok</Text>
+                            </IconButton>
+                        </Dialog.Trigger>
+                        <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                                <Dialog.Content color={"black"}>
+                                    <Dialog.Header>
+                                        <Dialog.Title>Jármű adatai</Dialog.Title>
+                                        <Dialog.CloseTrigger color={"white"} asChild>
+                                            <CloseButton size="sm" />
+                                        </Dialog.CloseTrigger>
+                                    </Dialog.Header>
+                                    <Dialog.Body>
+                                        {
+                                            selectedVehicle === null && (
+                                                <Box>
+                                                    <Alert.Root status="error">
+                                                        <Alert.Indicator />
+                                                        <Alert.Title>
+                                                            Zárja be és válasszon járművet a táblázatból!
+                                                        </Alert.Title>
+                                                    </Alert.Root>
+                                                </Box>
+                                            )
+                                        }
+                                        {
+                                            selectedVehicle !== null && (
+                                                <p>Táblázatok helye</p>
+                                            )
+                                        }
+                                    </Dialog.Body>
+                                </Dialog.Content>
+                            </Dialog.Positioner>
+                        </Portal>
+                    </Dialog.Root>
 
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"red.600"}>
+                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                        <Dialog.Trigger asChild>
+                            <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
+                                <FaEdit />
+                                <Text fontSize={"sm"}>Szerkesztés</Text>
+                            </IconButton>
+                        </Dialog.Trigger>
+                        <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                                <Dialog.Content color={"black"}>
+                                    <Dialog.Header>
+                                        <Dialog.Title>Jármű szerkesztése</Dialog.Title>
+                                        <Dialog.CloseTrigger color={"white"} asChild>
+                                            <CloseButton size="sm" />
+                                        </Dialog.CloseTrigger>
+                                    </Dialog.Header>
+                                    <Dialog.Body>
+                                        {
+                                            selectedVehicle === null && (
+                                                <Box>
+                                                    <Alert.Root status="error">
+                                                        <Alert.Indicator />
+                                                        <Alert.Title>
+                                                            Zárja be és válasszon szerkesztendő járművet a táblázatból!
+                                                        </Alert.Title>
+                                                    </Alert.Root>
+                                                </Box>
+                                            )
+                                        }
+                                        {
+                                            selectedVehicle !== null && (
+                                                <Text>{selectedVehicle}</Text>
+                                            )
+                                        }
+                                    </Dialog.Body>
+                                </Dialog.Content>
+                            </Dialog.Positioner>
+                        </Portal>
+                    </Dialog.Root>
+
+                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                        <Dialog.Trigger asChild>
+                            <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
+                                <FaCar />
+                                <Text fontSize={"sm"}>Új jármű rögzítése</Text>
+                            </IconButton>
+                        </Dialog.Trigger>
+                        <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                                <Dialog.Content color={"black"}>
+                                    <Dialog.Header>
+                                        <Dialog.Title>Új jármű rögzítése</Dialog.Title>
+                                        <Dialog.CloseTrigger color={"white"} asChild>
+                                            <CloseButton size="sm" />
+                                        </Dialog.CloseTrigger>
+                                    </Dialog.Header>
+                                    <Dialog.Body>
+                                        <p>Form helye</p>
+                                    </Dialog.Body>
+                                </Dialog.Content>
+                            </Dialog.Positioner>
+                        </Portal>
+                    </Dialog.Root>
+
+                    <IconButton onClick={handleDelete} px={"0.5rem"} h={"2rem"} color={"white"} bg={"red.600"}>
                         <FaTrashAlt />
                         <Text fontSize={"sm"}>Törlés</Text>
                     </IconButton>
