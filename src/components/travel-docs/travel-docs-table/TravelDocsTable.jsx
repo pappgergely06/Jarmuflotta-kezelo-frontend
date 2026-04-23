@@ -1,17 +1,24 @@
 import { Table } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
-import { fetchTravelDocs } from "../../../utils/api";
+import { fetchTravelDocsByVehicleId } from "../../../utils/api";
 import Cookies from "js-cookie"
+import useAuth from "../../../hooks/useAuth";
+import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 
 function TravelDocsTable() {
+
+    const { user } = useAuth()
+    const { selectedVehicle } = useSelectedVehicle()
+
+    const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id
 
     const [travelDocs, setTravelDocs] = useState([]);
 
     const [selectedId, setSelectedId] = useState(null)
 
     useEffect(() => {
-        fetchTravelDocs(Cookies.get("auth_token"))
+        fetchTravelDocsByVehicleId(Cookies.get("auth_token"), vehicle_id)
             .then((data) => setTravelDocs(data))
             .catch((error) => console.error(error))
     }, [travelDocs])

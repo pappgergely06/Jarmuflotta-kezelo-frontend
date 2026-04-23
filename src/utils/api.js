@@ -122,10 +122,10 @@ export async function fetchVehicleById(token, id) {
     }
 }
 
-export async function fetchTravelDocs(token) {
+export async function fetchTravelDocsByVehicleId(token, id) {
     try {
 
-        const response = await axios.get(API_URL + "travel-logs", {
+        const response = await axios.get(API_URL + `travel-logs/vehicle/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
