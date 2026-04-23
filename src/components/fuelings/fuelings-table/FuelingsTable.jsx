@@ -1,17 +1,24 @@
 import { Table } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
-import { fetchFuelings } from "../../../utils/api";
+import { fetchFuelingsByVehicleId } from "../../../utils/api";
 import Cookies from "js-cookie";
+import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
+import useAuth from "../../../hooks/useAuth";
 
 function FuelingsTable() {
+
+    const { user } = useAuth()
+    const { selectedVehicle } = useSelectedVehicle()
+
+    const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id
 
     const [fuelings, setFuelings] = useState([]);
 
     const [selectedId, setSelectedId] = useState(null)
 
     useEffect(() => {
-        fetchFuelings(Cookies.get("auth_token"))
+        fetchFuelingsByVehicleId(Cookies.get("auth_token"), vehicle_id)
             .then((data) => setFuelings(data))
             .catch((error) => console.error(error))
     }, [fuelings])
@@ -54,7 +61,7 @@ function FuelingsTable() {
                                 transition="background 0.2s"
                             >
                                 <Table.Cell>
-                                    <DateFormatter dateString={fueling.date}/>
+                                    <DateFormatter dateString={fueling.date} />
                                 </Table.Cell>
                                 <Table.Cell>{fueling.amount_liters}l</Table.Cell>
                                 <Table.Cell>{fueling.price_per_liter}Ft/l</Table.Cell>

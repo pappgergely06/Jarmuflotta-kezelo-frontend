@@ -142,10 +142,10 @@ export async function fetchTravelDocsByVehicleId(token, id) {
     }
 }
 
-export async function fetchFuelings(token) {
+export async function fetchFuelingsByVehicleId(token, id) {
     try {
 
-        const response = await axios.get(API_URL + "fuelings", {
+        const response = await axios.get(API_URL + `fuelings/vehicle/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
