@@ -6,6 +6,8 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
 import useSelectedVehicle from "../../hooks/useSelectedVehicle";
 import Cookies from "js-cookie";
+import AddVehicleForm from "../add-vehicle-form/AddVehicleForm";
+import { deleteVehicleById } from "../../utils/api";
 
 function Vehicles() {
 
@@ -119,7 +121,7 @@ function Vehicles() {
                         </Portal>
                     </Dialog.Root>
 
-                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                    <Dialog.Root size="lg" placement="center" motionPreset="slide-in-bottom">
                         <Dialog.Trigger asChild>
                             <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
                                 <FaCar />
@@ -137,7 +139,7 @@ function Vehicles() {
                                         </Dialog.CloseTrigger>
                                     </Dialog.Header>
                                     <Dialog.Body>
-                                        <p>Form helye</p>
+                                        <AddVehicleForm/>
                                     </Dialog.Body>
                                 </Dialog.Content>
                             </Dialog.Positioner>

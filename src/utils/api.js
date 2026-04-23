@@ -204,6 +204,26 @@ export async function addFueling(token, body) {
     }
 }
 
+export async function addVehicle(token, body) {
+    try {
+
+        const response = await axios.post(API_URL + "vehicles", body, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
 //PUT
 export async function updateOdometer(token, id, body) {
     try {
