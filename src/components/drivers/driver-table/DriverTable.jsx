@@ -4,44 +4,40 @@ import { fetchDrivers } from "../../../utils/api";
 import Cookies from "js-cookie";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
 
-function DriverTable() {
-
-  const [selectedId, setSelectedId] = useState()
-
-  const [drivers, setDrivers] = useState([])
+function DriverTable({ onSelect, selectedId }) {
+  const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
     fetchDrivers(Cookies.get("auth_token"))
-      .then((data) => setDrivers(data))
-      .catch((error) => console.error(error))
-  }, [])
+      .then(setDrivers)
+      .catch(console.error);
+  }, []);
 
   return (
     <Table.ScrollArea color="black" borderWidth="1px" borderRadius="md" h="80%" w="100%">
       <Table.Root size="md" stickyHeader interactive>
         <Table.Header bg="gray.200">
           <Table.Row>
-            <Table.ColumnHeader fontWeight={"bold"}>Név</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight={"bold"}>Autó</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight={"bold"}>Jogosítvány száma</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight={"bold"}>Telefonszám</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight={"bold"}>Email</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight={"bold"}>Lakcím</Table.ColumnHeader>
-            <Table.ColumnHeader fontWeight={"bold"}>Kezdés dátum</Table.ColumnHeader>
+            <Table.ColumnHeader>Név</Table.ColumnHeader>
+            <Table.ColumnHeader>Autó</Table.ColumnHeader>
+            <Table.ColumnHeader>Jogosítvány</Table.ColumnHeader>
+            <Table.ColumnHeader>Telefonszám</Table.ColumnHeader>
+            <Table.ColumnHeader>Email</Table.ColumnHeader>
+            <Table.ColumnHeader>Lakcím</Table.ColumnHeader>
+            <Table.ColumnHeader>Kezdés dátum</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
-
         <Table.Body>
           {drivers.map((driver) => {
-            const isSelected = selectedId === driver.driver_id
+            // Ez a sor hiányzott a definícióhoz:
+            const isSelected = selectedId === driver.driver_id;
 
             return (
               <Table.Row
                 key={driver.driver_id}
-                onClick={() => setSelectedId(isSelected ? null : driver.driver_id)}
+                onClick={() => onSelect(isSelected ? null : driver.driver_id)}
                 cursor="pointer"
                 data-selected={isSelected ? "" : undefined}
-
                 _selected={{
                   bg: "blue.100",
                   _hover: { bg: "blue.200" },
@@ -63,7 +59,7 @@ function DriverTable() {
                   <DateFormatter dateString={driver.starting_date} />
                 </Table.Cell>
               </Table.Row>
-            )
+            );
           })}
         </Table.Body>
       </Table.Root>
