@@ -1,4 +1,4 @@
-import { IconButton, Stack, Text, VStack } from "@chakra-ui/react";
+import { Alert, Box, CloseButton, Dialog, IconButton, Portal, Stack, Text, VStack } from "@chakra-ui/react";
 import GridBox from "../ui/grid-box/GridBox";
 import DriverTable from "./driver-table/DriverTable";
 import { IoIosPersonAdd } from "react-icons/io";
@@ -9,9 +9,9 @@ import Cookies from "js-cookie";
 
 function Drivers() {
     const [selectedId, setSelectedId] = useState(null);
-    
+
     const handleDelete = async () => {
-        if (!selectedId){
+        if (!selectedId) {
             return alert("Válasszon sofőrt a táblázatból!");
         }
 
@@ -32,13 +32,69 @@ function Drivers() {
 
                 <Stack flexDirection={"row"}>
 
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
-                        <FaEdit /><Text fontSize={"sm"}>Szerkesztés</Text>
-                    </IconButton>
+                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                        <Dialog.Trigger asChild>
+                            <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
+                                <FaEdit /><Text fontSize={"sm"}>Szerkesztés</Text>
+                            </IconButton>
+                        </Dialog.Trigger>
+                        <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                                <Dialog.Content color={"black"}>
+                                    <Dialog.Header>
+                                        <Dialog.Title>Sofőr szerkesztése</Dialog.Title>
+                                        <Dialog.CloseTrigger color={"white"} asChild>
+                                            <CloseButton size="sm" />
+                                        </Dialog.CloseTrigger>
+                                    </Dialog.Header>
+                                    <Dialog.Body>
+                                        {
+                                            selectedId === null && (
+                                                <Box>
+                                                    <Alert.Root status="error">
+                                                        <Alert.Indicator />
+                                                        <Alert.Title>
+                                                            Zárja be és válasszon sofőrt a táblázatból!
+                                                        </Alert.Title>
+                                                    </Alert.Root>
+                                                </Box>
+                                            )
+                                        }
+                                        {
+                                            selectedId !== null && (
+                                                <p>{selectedId}</p>
+                                            )
+                                        }
+                                    </Dialog.Body>
+                                </Dialog.Content>
+                            </Dialog.Positioner>
+                        </Portal>
+                    </Dialog.Root>
 
-                    <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
-                        <IoIosPersonAdd /><Text fontSize={"sm"}>Új sofőr</Text>
-                    </IconButton>
+                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                        <Dialog.Trigger asChild>
+                            <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
+                                <IoIosPersonAdd /><Text fontSize={"sm"}>Új sofőr</Text>
+                            </IconButton>
+                        </Dialog.Trigger>
+                        <Portal>
+                            <Dialog.Backdrop />
+                            <Dialog.Positioner>
+                                <Dialog.Content color={"black"}>
+                                    <Dialog.Header>
+                                        <Dialog.Title>Új sofőr rögzítése</Dialog.Title>
+                                        <Dialog.CloseTrigger color={"white"} asChild>
+                                            <CloseButton size="sm" />
+                                        </Dialog.CloseTrigger>
+                                    </Dialog.Header>
+                                    <Dialog.Body>
+                                        <p>Form helye</p>
+                                    </Dialog.Body>
+                                </Dialog.Content>
+                            </Dialog.Positioner>
+                        </Portal>
+                    </Dialog.Root>
 
                     <IconButton onClick={handleDelete} px={"0.5rem"} h={"2rem"} color={"white"} bg={"red.600"}>
                         <FaTrashAlt /><Text fontSize={"sm"}>Törlés</Text>

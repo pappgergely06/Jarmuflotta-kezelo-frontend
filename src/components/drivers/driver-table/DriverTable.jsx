@@ -29,7 +29,6 @@ function DriverTable({ onSelect, selectedId }) {
         </Table.Header>
         <Table.Body>
           {drivers.map((driver) => {
-            // Ez a sor hiányzott a definícióhoz:
             const isSelected = selectedId === driver.driver_id;
 
             return (
