@@ -8,6 +8,7 @@ import useSelectedVehicle from "../../hooks/useSelectedVehicle";
 import Cookies from "js-cookie";
 import AddVehicleForm from "../add-vehicle-form/AddVehicleForm";
 import { deleteVehicleById } from "../../utils/api";
+import ModifyVehicleForm from "../modify-vehicle-form/ModifyVehicleForm";
 
 function Vehicles() {
 
@@ -80,7 +81,7 @@ function Vehicles() {
                         </Portal>
                     </Dialog.Root>
 
-                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                    <Dialog.Root size="lg" placement="center" motionPreset="slide-in-bottom">
                         <Dialog.Trigger asChild>
                             <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
                                 <FaEdit />
@@ -112,7 +113,7 @@ function Vehicles() {
                                         }
                                         {
                                             selectedVehicle !== null && (
-                                                <Text>{selectedVehicle}</Text>
+                                                <ModifyVehicleForm/>
                                             )
                                         }
                                     </Dialog.Body>

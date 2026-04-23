@@ -1,4 +1,4 @@
-import { useState } from "react"; // Hiányzott az import
+import { useState } from "react";
 import { Button, Field, Fieldset, HStack, IconButton, Input, VStack } from "@chakra-ui/react";
 import { IoIosSave } from "react-icons/io";
 import { addVehicle } from "../../utils/api";
@@ -83,7 +83,7 @@ function AddVehicleForm() {
                     </HStack>
                 </Fieldset.Content>
 
-                <Button width={"40%"} colorPalette="green" type="submit" alignSelf="center" mt={4}>
+                <Button width={"40%"} bg={"green.600"} type="submit" alignSelf="center" mt={4}>
                     <IoIosSave /> Rögzít
                 </Button>
             </Fieldset.Root>

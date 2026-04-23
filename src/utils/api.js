@@ -245,6 +245,26 @@ export async function updateOdometer(token, id, body) {
     }
 }
 
+export async function updateVehicle(token, id, body) {
+    try {
+
+        const response = await axios.put(API_URL + `vehicles/${id}`, body, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
+
 //DELETES
 export async function deleteDriverById(token, id) {
     try {
