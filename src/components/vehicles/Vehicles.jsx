@@ -6,9 +6,9 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
 import useSelectedVehicle from "../../hooks/useSelectedVehicle";
 import Cookies from "js-cookie";
-import AddVehicleForm from "../add-vehicle-form/AddVehicleForm";
+import AddVehicleForm from "../dialog-forms/add-vehicle-form/AddVehicleForm";
 import { deleteVehicleById } from "../../utils/api";
-import ModifyVehicleForm from "../modify-vehicle-form/ModifyVehicleForm";
+import ModifyVehicleForm from "../dialog-forms/modify-vehicle-form/ModifyVehicleForm";
 
 function Vehicles() {
 

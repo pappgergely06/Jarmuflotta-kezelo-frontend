@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Field, Fieldset, HStack, Input, VStack, Text } from "@chakra-ui/react";
-import { fetchVehicleById, updateVehicle } from "../../utils/api";
+import { fetchVehicleById, updateVehicle } from "../../../utils/api";
 import Cookies from "js-cookie";
-import useSelectedVehicle from "../../hooks/useSelectedVehicle";
+import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 import { FaEdit } from "react-icons/fa";
 
 function ModifyVehicleForm() {

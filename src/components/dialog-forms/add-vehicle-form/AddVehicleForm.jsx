@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Field, Fieldset, HStack, Input, VStack, Text } from "@chakra-ui/react";
 import { IoIosSave } from "react-icons/io";
-import { addVehicle } from "../../utils/api";
+import { addVehicle } from "../../../utils/api";
 import Cookies from "js-cookie";
 
 function AddVehicleForm() {
@@ -45,7 +45,7 @@ function AddVehicleForm() {
             "vin": vin.toUpperCase(),
             "start_odometer": Number(mileage),
             "insurance_expiry": insurance,
-            "license_plate": licensePlate.toUpperCase()
+            "lisence_plate": licensePlate.toUpperCase()
         }).then(() => alert("Sikeres mentés!"));
     };
 
