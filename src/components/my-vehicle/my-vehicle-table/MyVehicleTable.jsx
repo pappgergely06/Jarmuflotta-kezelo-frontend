@@ -15,7 +15,7 @@ function MyVehicleTable() {
         fetchVehicleById(Cookies.get("auth_token"), user.driver_vehicle_id)
             .then((data) => setMyVehicle(data))
             .catch((err) => console.error(err))
-    }, [])
+    }, [myVehicle])
 
     return (
         <Table.Root size="md" variant="line" color={"black"}>

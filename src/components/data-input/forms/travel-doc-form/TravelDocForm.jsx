@@ -33,8 +33,10 @@ function TravelDocForm({ width }) {
     }
 
     useEffect(() => {
-        getCurrentOdometer()
-    }, [])
+        if (vehicle_id) {
+            getCurrentOdometer();
+        }
+    }, [vehicle_id]);
 
     const token = Cookies.get("auth_token")
 

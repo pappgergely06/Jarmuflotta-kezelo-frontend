@@ -208,7 +208,7 @@ export async function addFueling(token, body) {
 export async function updateOdometer(token, id, body) {
     try {
 
-        const response = await axios.post(API_URL + `vehicles/${id}`, body, {
+        const response = await axios.put(API_URL + `vehicles/updateOdo/${id}`, body, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
