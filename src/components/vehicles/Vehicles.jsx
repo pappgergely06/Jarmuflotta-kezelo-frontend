@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import AddVehicleForm from "../dialog-forms/add-vehicle-form/AddVehicleForm";
 import { deleteVehicleById } from "../../utils/api";
 import ModifyVehicleForm from "../dialog-forms/modify-vehicle-form/ModifyVehicleForm";
+import SavedVehicleData from "../savedVehicleData/SavedVehicleData";
 
 function Vehicles() {
 
@@ -50,7 +51,7 @@ function Vehicles() {
                         <Portal>
                             <Dialog.Backdrop />
                             <Dialog.Positioner>
-                                <Dialog.Content color={"black"}>
+                                <Dialog.Content color={"black"} bg={"gray.200"}>
                                     <Dialog.Header>
                                         <Dialog.Title>Jármű adatai</Dialog.Title>
                                         <Dialog.CloseTrigger color={"white"} asChild>
@@ -72,7 +73,7 @@ function Vehicles() {
                                         }
                                         {
                                             selectedVehicle !== null && (
-                                                <p>Táblázatok helye</p>
+                                                <SavedVehicleData/>
                                             )
                                         }
                                     </Dialog.Body>

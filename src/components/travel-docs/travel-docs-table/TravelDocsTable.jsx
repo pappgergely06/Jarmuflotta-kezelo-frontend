@@ -21,13 +21,13 @@ function TravelDocsTable() {
         fetchTravelDocsByVehicleId(Cookies.get("auth_token"), vehicle_id)
             .then((data) => setTravelDocs(data))
             .catch((error) => console.error(error))
-    }, [travelDocs])
+    }, [vehicle_id])
 
     function calcDistance(start, end) {
         return end - start
     }
     return (
-        <Table.ScrollArea color="black" maxHeight={"100%"} w="100%">
+        <Table.ScrollArea color="black" height="60vh" w="100%">
             <Table.Root size="md" stickyHeader interactive>
                 <Table.Header bg="gray.200">
                     <Table.Row>

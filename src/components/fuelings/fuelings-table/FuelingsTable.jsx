@@ -7,40 +7,40 @@ import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 import useAuth from "../../../hooks/useAuth";
 
 function FuelingsTable() {
-
-    const { user } = useAuth()
-    const { selectedVehicle } = useSelectedVehicle()
-
-    const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id
+    const { user } = useAuth();
+    const { selectedVehicle } = useSelectedVehicle();
+    const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id;
 
     const [fuelings, setFuelings] = useState([]);
-
-    const [selectedId, setSelectedId] = useState(null)
+    const [selectedId, setSelectedId] = useState(null);
 
     useEffect(() => {
-        fetchFuelingsByVehicleId(Cookies.get("auth_token"), vehicle_id)
-            .then((data) => setFuelings(data))
-            .catch((error) => console.error(error))
-    }, [fuelings])
+        if (vehicle_id) {
+            fetchFuelingsByVehicleId(Cookies.get("auth_token"), vehicle_id)
+                .then((data) => setFuelings(data))
+                .catch((error) => console.error(error));
+        }
+    }, [vehicle_id]);
 
-    function calcPrice(price_per_liter, amount_liters) {
-        return Math.round(price_per_liter * amount_liters)
+    function calcPrice(price, amount) {
+        return Math.round(price * amount);
     }
+
     return (
-        <Table.ScrollArea color="black" maxHeight={"100%"} w="100%">
+        <Table.ScrollArea color="black" height="60vh" w="100%">
             <Table.Root size="md" stickyHeader interactive>
                 <Table.Header bg="gray.200">
                     <Table.Row>
-                        <Table.ColumnHeader fontWeight={"bold"}>Dátum</Table.ColumnHeader>
-                        <Table.ColumnHeader fontWeight={"bold"}>Tankolt Liter</Table.ColumnHeader>
-                        <Table.ColumnHeader fontWeight={"bold"}>Literenkénti ár</Table.ColumnHeader>
-                        <Table.ColumnHeader fontWeight={"bold"}>Fizetett összeg</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Dátum</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Tankolt Liter</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Literenkénti ár</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Fizetett összeg</Table.ColumnHeader>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     {fuelings.map((fueling) => {
-                        const isSelected = selectedId === fueling.fueling_id
+                        const isSelected = selectedId === fueling.fueling_id;
 
                         return (
                             <Table.Row
@@ -48,14 +48,10 @@ function FuelingsTable() {
                                 onClick={() => setSelectedId(isSelected ? null : fueling.fueling_id)}
                                 cursor="pointer"
                                 data-selected={isSelected ? "" : undefined}
-
                                 _selected={{
                                     bg: "blue.100",
                                     _hover: { bg: "blue.200" },
-                                    "& > td": {
-                                        color: "blue.900",
-                                        fontWeight: "bold"
-                                    }
+                                    "& > td": { color: "blue.900", fontWeight: "bold" }
                                 }}
                                 _hover={{ bg: "gray.100" }}
                                 transition="background 0.2s"
@@ -65,14 +61,11 @@ function FuelingsTable() {
                                 </Table.Cell>
                                 <Table.Cell>{fueling.amount_liters}l</Table.Cell>
                                 <Table.Cell>{fueling.price_per_liter}Ft/l</Table.Cell>
-                                <Table.Cell>{
-                                    calcPrice(
-                                        fueling.price_per_liter,
-                                        fueling.amount_liters
-                                    )
-                                }Ft</Table.Cell>
+                                <Table.Cell>
+                                    {calcPrice(fueling.price_per_liter, fueling.amount_liters)}Ft
+                                </Table.Cell>
                             </Table.Row>
-                        )
+                        );
                     })}
                 </Table.Body>
             </Table.Root>
