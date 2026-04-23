@@ -224,3 +224,24 @@ export async function updateOdometer(token, id, body) {
         }
     }
 }
+
+//DELETES
+export async function deleteDriverById(token, id) {
+    try {
+
+        const response = await axios.delete(API_URL + `drivers/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}

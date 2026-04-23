@@ -60,7 +60,7 @@ function DriverTable() {
                 <Table.Cell>{driver.email}</Table.Cell>
                 <Table.Cell>{driver.address}</Table.Cell>
                 <Table.Cell>
-                  <DateFormatter dateString={driver.starting_date}/>
+                  <DateFormatter dateString={driver.starting_date} />
                 </Table.Cell>
               </Table.Row>
             )
