@@ -5,6 +5,7 @@ import { FaCar } from "react-icons/fa6";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { BsFillClipboard2DataFill } from "react-icons/bs";
 import useSelectedVehicle from "../../hooks/useSelectedVehicle";
+import Cookies from "js-cookie";
 
 function Vehicles() {
 

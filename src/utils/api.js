@@ -245,3 +245,23 @@ export async function deleteDriverById(token, id) {
         }
     }
 }
+
+export async function deleteVehicleById(token, id) {
+    try {
+
+        const response = await axios.delete(API_URL + `vehicles/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        return response.data
+
+    } catch (error) {
+        if (error.response) {
+            console.error("Server error: " + error)
+        } else {
+            console.error("Network error: " + error)
+        }
+    }
+}
