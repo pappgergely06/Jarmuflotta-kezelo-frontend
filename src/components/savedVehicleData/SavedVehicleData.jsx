@@ -1,6 +1,7 @@
 import { Box, Grid } from "@chakra-ui/react";
 import TravelDocs from "../travel-docs/TravelDocs";
 import Fuelings from "../fuelings/Fuelings";
+import Services from "../services/Services";
 
 function SavedVehicleData() {
     return (
@@ -12,6 +13,7 @@ function SavedVehicleData() {
             >
                 <TravelDocs/>
                 <Fuelings/>
+                <Services/>
             </Grid>
         </Box>
     );
