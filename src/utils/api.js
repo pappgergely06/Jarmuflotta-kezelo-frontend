@@ -1,307 +1,37 @@
-import axios from "axios"
+import axios from "axios";
 
-const API_URL = "https://flotta.vbdev.hu/api/"
+const api = axios.create({
+    baseURL: "https://flotta.vbdev.hu/api/",
+});
 
-//AUTH
-export async function fetchToken(username, password) {
-    try {
+const authHeader = (token) => ({
+    headers: { Authorization: `Bearer ${token}` }
+});
 
-        const response = await axios.post(API_URL + "auth/login", {
-            username,
-            password
-        })
+const handleError = (error) => {
+    console.error(error.response ? "Server error" : "Network error", error);
+    throw error;
+};
 
-        return response.data
+export const fetchToken = (username, password) => 
+    api.post("auth/login", { username, password }).then(r => r.data).catch(handleError);
 
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
+export const fetchUser = (token) => 
+    api.get("auth/profile", authHeader(token)).then(r => r.data).catch(handleError);
 
-export async function fetchUser(token) {
-    try {
+export const fetchDrivers = (token) => api.get("drivers", authHeader(token)).then(r => r.data);
+export const fetchDriverById = (token, id) => api.get(`drivers/${id}`, authHeader(token)).then(r => r.data);
+export const fetchVehicles = (token) => api.get("vehicles", authHeader(token)).then(r => r.data);
+export const fetchVehicleById = (token, id) => api.get(`vehicles/${id}`, authHeader(token)).then(r => r.data);
+export const fetchTravelDocsByVehicleId = (token, id) => api.get(`travel-logs/vehicle/${id}`, authHeader(token)).then(r => r.data);
+export const fetchFuelingsByVehicleId = (token, id) => api.get(`fuelings/vehicle/${id}`, authHeader(token)).then(r => r.data);
 
-        const response = await axios.get(API_URL + "auth/profile", {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
+export const addTravelDoc = (token, body) => api.post("travel-logs", body, authHeader(token)).then(r => r.data);
+export const addFueling = (token, body) => api.post("fuelings", body, authHeader(token)).then(r => r.data);
+export const addVehicle = (token, body) => api.post("vehicles", body, authHeader(token)).then(r => r.data);
 
-        return response.data
+export const updateOdometer = (token, id, body) => api.put(`vehicles/updateOdo/${id}`, body, authHeader(token)).then(r => r.data);
+export const updateVehicle = (token, id, body) => api.put(`vehicles/${id}`, body, authHeader(token)).then(r => r.data);
 
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function fetchDrivers(token) {
-    try {
-
-        const response = await axios.get(API_URL + "drivers", {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function fetchDriverById(token, id) {
-    try {
-
-        const response = await axios.get(API_URL + `drivers/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function fetchVehicles(token) {
-    try {
-
-        const response = await axios.get(API_URL + "vehicles", {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function fetchVehicleById(token, id) {
-    try {
-
-        const response = await axios.get(API_URL + `vehicles/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function fetchTravelDocsByVehicleId(token, id) {
-    try {
-
-        const response = await axios.get(API_URL + `travel-logs/vehicle/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function fetchFuelingsByVehicleId(token, id) {
-    try {
-
-        const response = await axios.get(API_URL + `fuelings/vehicle/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-//POSTS
-
-export async function addTravelDoc(token, body) {
-    try {
-
-        const response = await axios.post(API_URL + "travel-logs", body, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function addFueling(token, body) {
-    try {
-
-        const response = await axios.post(API_URL + "fuelings", body, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function addVehicle(token, body) {
-    try {
-
-        const response = await axios.post(API_URL + "vehicles", body, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-//PUT
-export async function updateOdometer(token, id, body) {
-    try {
-
-        const response = await axios.put(API_URL + `vehicles/updateOdo/${id}`, body, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function updateVehicle(token, id, body) {
-    try {
-
-        const response = await axios.put(API_URL + `vehicles/${id}`, body, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-//DELETES
-export async function deleteDriverById(token, id) {
-    try {
-
-        const response = await axios.delete(API_URL + `drivers/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
-
-export async function deleteVehicleById(token, id) {
-    try {
-
-        const response = await axios.delete(API_URL + `vehicles/${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-
-        return response.data
-
-    } catch (error) {
-        if (error.response) {
-            console.error("Server error: " + error)
-        } else {
-            console.error("Network error: " + error)
-        }
-    }
-}
+export const deleteDriverById = (token, id) => api.delete(`drivers/${id}`, authHeader(token)).then(r => r.data);
+export const deleteVehicleById = (token, id) => api.delete(`vehicles/${id}`, authHeader(token)).then(r => r.data);

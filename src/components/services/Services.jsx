@@ -3,7 +3,7 @@ import GridBox from "../ui/grid-box/GridBox";
 
 function Services() {
     return (
-        <GridBox header={"Services"}>
+        <GridBox header={"Szervizek"}>
             <VStack h="calc(100% - 5vh)">
                 
             </VStack>
