@@ -4,8 +4,10 @@ import { fetchVehicleById, updateVehicle } from "../../../utils/api";
 import Cookies from "js-cookie";
 import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 import { FaEdit } from "react-icons/fa";
+import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function ModifyVehicleForm() {
+    const { triggerRefresh } = useRefresh()
     const { selectedVehicle } = useSelectedVehicle();
     const today = new Date().toISOString().split('T')[0];
 
@@ -64,7 +66,7 @@ function ModifyVehicleForm() {
             "start_odometer": Number(mileage),
             "insurance_expiry": insurance,
             "lisence_plate": licensePlate.toUpperCase()
-        })
+        }).then(() => triggerRefresh("vehicles"))
             .catch(() => alert("Hiba történt a mentés során!"));
     };
 

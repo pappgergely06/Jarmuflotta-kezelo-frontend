@@ -7,9 +7,12 @@ import useAuth from "../../../../hooks/useAuth";
 import useSelectedVehicle from "../../../../hooks/useSelectedVehicle";
 import { addFueling } from "../../../../utils/api";
 import Cookies from "js-cookie";
+import { useRefresh } from "../../../../contexts/refresh/RefreshContext";
 
 function FuelingForm({ width }) {
 
+
+    const { triggerRefresh } = useRefresh()
     const { user } = useAuth()
     const { selectedVehicle } = useSelectedVehicle()
 
@@ -57,6 +60,7 @@ function FuelingForm({ width }) {
                 "price_per_liter": pricePerLiter,
                 "vehicle_id": vehicle_id
             })
+            triggerRefresh("fuelings")
             clearForm()
         } else {
             setError(e)

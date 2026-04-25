@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import { fetchDrivers } from "../../../utils/api";
 import Cookies from "js-cookie";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
+import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function DriverTable({ onSelect, selectedId }) {
+  const { triggers } = useRefresh()
   const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
     fetchDrivers(Cookies.get("auth_token"))
       .then(setDrivers)
       .catch(console.error);
-  }, []);
+  }, [triggers.drivers]);
 
   return (
     <Table.ScrollArea color="black" borderWidth="1px" borderRadius="md" h="80%" w="100%">

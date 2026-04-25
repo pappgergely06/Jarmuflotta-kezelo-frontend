@@ -4,8 +4,11 @@ import { fetchVehicles } from "../../../utils/api";
 import Cookies from "js-cookie";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
 import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
+import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function VehiclesTable() {
+
+  const {triggers} = useRefresh()
 
   const {selectedVehicle, setSelectedVehicle} = useSelectedVehicle()
 
@@ -15,7 +18,7 @@ function VehiclesTable() {
     fetchVehicles(Cookies.get("auth_token"))
       .then((data) => setVehicles(data))
       .catch((error) => console.error(error))
-  })
+  }, [triggers.vehicles])
 
   return (
     <Table.ScrollArea

@@ -5,8 +5,11 @@ import { fetchFuelingsByVehicleId } from "../../../utils/api";
 import Cookies from "js-cookie";
 import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 import useAuth from "../../../hooks/useAuth";
+import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function FuelingsTable() {
+
+    const { triggers } = useRefresh()
     const { user } = useAuth();
     const { selectedVehicle } = useSelectedVehicle();
     const vehicle_id = user.role === "admin" ? selectedVehicle : user.driver_vehicle_id;
@@ -20,7 +23,7 @@ function FuelingsTable() {
                 .then((data) => setFuelings(data))
                 .catch((error) => console.error(error));
         }
-    }, [vehicle_id]);
+    }, [triggers.fuelings]);
 
     function calcPrice(price, amount) {
         return Math.round(price * amount);

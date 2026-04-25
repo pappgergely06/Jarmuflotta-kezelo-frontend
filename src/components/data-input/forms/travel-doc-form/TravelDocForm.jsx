@@ -7,9 +7,11 @@ import { addTravelDoc, fetchVehicleById, updateOdometer } from "../../../../util
 import Cookies from "js-cookie";
 import useAuth from "../../../../hooks/useAuth";
 import useSelectedVehicle from "../../../../hooks/useSelectedVehicle";
+import { useRefresh } from "../../../../contexts/refresh/RefreshContext";
 
 function TravelDocForm({ width }) {
 
+    const { triggerRefresh } = useRefresh()
     const { user } = useAuth()
     const { selectedVehicle } = useSelectedVehicle()
 
@@ -80,7 +82,7 @@ function TravelDocForm({ width }) {
                 await updateOdometer(token, vehicle_id, {
                     "start_odometer": endKm
                 });
-
+                triggerRefresh("travelDocs")
                 clearForm();
             } catch (err) {
                 setError("Hiba történt a mentés során.");

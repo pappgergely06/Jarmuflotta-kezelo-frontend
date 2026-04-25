@@ -3,8 +3,10 @@ import { Button, Field, Fieldset, HStack, Input, VStack, Text } from "@chakra-ui
 import { IoIosSave } from "react-icons/io";
 import { addVehicle } from "../../../utils/api";
 import Cookies from "js-cookie";
+import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function AddVehicleForm() {
+    const { triggerRefresh } = useRefresh()
     const currentYear = new Date().getFullYear();
     const today = new Date().toISOString().split('T')[0];
 
@@ -46,7 +48,7 @@ function AddVehicleForm() {
             "start_odometer": Number(mileage),
             "insurance_expiry": insurance,
             "lisence_plate": licensePlate.toUpperCase()
-        }).then(() => alert("Sikeres mentés!"));
+        }).then(() => triggerRefresh("vehicles"));
     };
 
     return (

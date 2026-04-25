@@ -5,9 +5,11 @@ import { fetchTravelDocsByVehicleId } from "../../../utils/api";
 import Cookies from "js-cookie"
 import useAuth from "../../../hooks/useAuth";
 import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
+import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function TravelDocsTable() {
 
+    const { triggers } = useRefresh()
     const { user } = useAuth()
     const { selectedVehicle } = useSelectedVehicle()
 
@@ -21,7 +23,7 @@ function TravelDocsTable() {
         fetchTravelDocsByVehicleId(Cookies.get("auth_token"), vehicle_id)
             .then((data) => setTravelDocs(data))
             .catch((error) => console.error(error))
-    }, [vehicle_id])
+    }, [triggers.travelDocs])
 
     function calcDistance(start, end) {
         return end - start
