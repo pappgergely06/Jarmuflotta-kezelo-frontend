@@ -1,39 +1,64 @@
 import { Flex, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
-import "../../../forms-style/FormsStyle.module.css"
+import "../../../forms-style/FormsStyle.module.css";
 import { useState } from "react";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { IoIosSave } from "react-icons/io";
+import { addService } from "../../../../utils/api";
+import Cookies from "js-cookie";
+import { useRefresh } from "../../../../contexts/refresh/RefreshContext";
+import useSelectedVehicle from "../../../../hooks/useSelectedVehicle";
+import useAuth from "../../../../hooks/useAuth";
 
-function ServiceForm( {width} ) {
 
-    const [date, setDate] = useState("")
-    const [type, setType] = useState("")
-    const [nextService, setNextService] = useState("")
-    const [title, setTitle] = useState("")
-    const [price, setPrice] = useState(0)
+function ServiceForm({ width }) {
 
-    function handleDateChange(event) {
-        setDate(event.target.value)
-    }
+    const today = new Date().toISOString().split('T')[0];
 
-    function handleTypeChange(event) {
-        setType(event.target.value)
-    }
+    const [date, setDate] = useState(today);
+    const [type, setType] = useState("");
+    const [nextService, setNextService] = useState(today);
+    const [title, setTitle] = useState("");
+    const [price, setPrice] = useState(0);
+    const [errors, setErrors] = useState({});
 
-    function handleNextServiceChange(event) {
-        setNextService(event.target.value)
-    }
+    const { triggerRefresh } = useRefresh();
+    const { user } = useAuth();
+    const { selectedVehicle } = useSelectedVehicle();
 
-    function handleTitleChange(event) {
-        setTitle(event.target.value)
-    }
+    const vehicle_id = user?.role === "admin" ? selectedVehicle : user?.driver_vehicle_id;
 
-    function handlePriceChange(event) {
-        setPrice(event.target.value)
+    const validate = () => {
+        let e = {};
+        if (!date) e.date = "Dátum kötelező";
+        if (!title) e.title = "Megnevezés kötelező";
+        if (!type) e.type = "Típus kötelező";
+        if (price < 1) e.price = "Hibás ár";
+        setErrors(e);
+        return Object.keys(e).length === 0;
+    };
+
+    function clearForm() {
+        setDate(today);
+        setType("");
+        setNextService(today);
     }
 
     function saveService() {
+        if (!validate()) return;
 
+        addService(Cookies.get("auth_token"), {
+            "date": date,
+            "type": type,
+            "next_service": nextService,
+            "vehicle_id": vehicle_id
+        }).then(() => {
+            alert("Szerviz rögzítve!");
+            triggerRefresh("services");
+            clearForm()
+        }).catch(err => {
+            console.error(err);
+            alert("Hiba történt a mentés során.");
+        });
     }
 
     return (
@@ -42,33 +67,30 @@ function ServiceForm( {width} ) {
                 <FaScrewdriverWrench color="black" />
                 <Text color={"black"} fontWeight={"bold"}>Szerviz</Text>
             </HStack>
-            <HStack width={"100%"}>
-                <VStack width={"50%"}>
+
+            <HStack width={"100%"} alignItems="flex-start">
+                <VStack width={"50%"} align="stretch">
                     <Text color={"black"}>Dátum</Text>
-                    <input onChange={handleDateChange} value={date} type="date" />
+                    <input min={today} onChange={(e) => setDate(e.target.value)} value={date} type="date" />
+                    {errors.date && <Text color="red.500" fontSize="xs">{errors.date}</Text>}
                 </VStack>
-                <VStack width={"50%"}>
-                    <Text color={"black"}>Megnevezés</Text>
-                    <input onChange={handleTitleChange} value={title} type="text" placeholder="pl. levegőszűrő csere" />
-                </VStack>
-            </HStack>
-            <HStack width={"100%"}>
-                <VStack width={"1fr"}>
+                <VStack width={"50%"} align="stretch">
                     <Text color={"black"}>Következő szerviz</Text>
-                    <input onChange={handleNextServiceChange} value={nextService} type="date" />
-                </VStack>
-                <VStack width={"1fr"}>
-                    <Text color={"black"}>Típus</Text>
-                    <input onChange={handleTypeChange} value={type} type="text" placeholder="pl. kötelező" />
-                </VStack>
-                <VStack width={"1fr"}>
-                    <Text color={"black"}>Ár</Text>
-                    <input onChange={handlePriceChange} value={price} type="number" />
+                    <input onChange={(e) => setNextService(e.target.value)} value={nextService} type="date" />
                 </VStack>
             </HStack>
-            <IconButton onClick={saveService} bg={"green.600"}>
+
+            <HStack width={"100%"} alignItems="flex-start">
+                <VStack width={"100%"} align="stretch">
+                    <Text color={"black"}>Típus</Text>
+                    <input onChange={(e) => setType(e.target.value)} value={type} type="text" placeholder="pl. kötelező" />
+                    {errors.type && <Text color="red.500" fontSize="xs">{errors.type}</Text>}
+                </VStack>
+            </HStack>
+
+            <IconButton onClick={saveService} bg={"green.600"} color="white" mt={2}>
                 <IoIosSave />
-                <Text>Rögzít</Text>
+                <Text ml={2}>Rögzít</Text>
             </IconButton>
         </Flex>
     );

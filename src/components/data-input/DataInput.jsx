@@ -7,10 +7,10 @@ import ServiceForm from "./forms/service-form/ServiceForm";
 function DataInput() {
     return (
         <GridBox header={"Adatrögzítés"}>
-            <HStack h="calc(100% - 5vh)" padding={"0.5rem"}>
-                <TravelDocForm width={"25%"}/>
-                <FuelingForm width={"25%"}/>
-                <ServiceForm width={"50%"}/>
+            <HStack h="calc(100% - 5vh)" padding={"0.5rem"} alignItems="stretch">
+                <TravelDocForm width={"100%"} />
+                <FuelingForm width={"100%"} />
+                <ServiceForm width={"100%"} />
             </HStack>
         </GridBox>
     );
