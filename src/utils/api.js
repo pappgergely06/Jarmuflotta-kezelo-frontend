@@ -27,6 +27,7 @@ export const fetchVehicles = (token) => api.get("vehicles", authHeader(token)).t
 export const fetchVehicleById = (token, id) => api.get(`vehicles/${id}`, authHeader(token)).then(r => r.data);
 export const fetchTravelDocsByVehicleId = (token, id) => api.get(`travel-logs/vehicle/${id}`, authHeader(token)).then(r => r.data);
 export const fetchFuelingsByVehicleId = (token, id) => api.get(`fuelings/vehicle/${id}`, authHeader(token)).then(r => r.data);
+export const fetchServicesByVehicleId = (token, id) => api.get(`services/vehicle/${id}`, authHeader(token)).then(r => r.data);
 
 //POST
 export const addTravelDoc = (token, body) => api.post("travel-logs", body, authHeader(token)).then(r => r.data);
