@@ -1,8 +1,5 @@
 import { useState } from "react";
-import { 
-    Button, Field, Fieldset, Input, VStack, HStack, 
-    Tabs, Box, Text 
-} from "@chakra-ui/react";
+import { Button, Field, Fieldset, Input, VStack, HStack, Tabs, Box, Text } from "@chakra-ui/react";
 import { IoIosSave, IoIosArrowForward } from "react-icons/io";
 import Cookies from "js-cookie";
 import { useRefresh } from "../../../contexts/refresh/RefreshContext";

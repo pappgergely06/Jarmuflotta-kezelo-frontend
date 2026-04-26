@@ -53,15 +53,7 @@ function AdminPage() {
 
                     <GridItem
                         bg={"gray.50"}
-                        colSpan={1}
-                        borderRadius="0.5rem"
-                    >
-                        <CostStatement/>
-                    </GridItem>
-
-                    <GridItem
-                        bg={"gray.50"}
-                        colSpan={4}
+                        colSpan={5}
                         borderRadius="0.5rem"
                     >
                         <DataInput/>

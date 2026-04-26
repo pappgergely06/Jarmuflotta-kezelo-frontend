@@ -7,8 +7,11 @@ import { deleteDriverById } from "../../utils/api";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import AddDriverForm from "../dialog-forms/add-driver-form/AddDriverForm";
+import { useRefresh } from "../../contexts/refresh/RefreshContext";
 
 function Drivers() {
+
+    const { triggerRefresh } = useRefresh()
     const [selectedId, setSelectedId] = useState(null);
 
     const handleDelete = async () => {
@@ -20,6 +23,7 @@ function Drivers() {
             try {
                 await deleteDriverById(Cookies.get("auth_token"), selectedId);
                 setSelectedId(null);
+                triggerRefresh("drivers")
             } catch (err) {
                 console.error(err);
             }
@@ -32,47 +36,6 @@ function Drivers() {
                 <DriverTable onSelect={setSelectedId} selectedId={selectedId} />
 
                 <Stack flexDirection={"row"}>
-
-                    <Dialog.Root size="lg" placement="center" motionPreset="slide-in-bottom">
-                        <Dialog.Trigger asChild>
-                            <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
-                                <FaEdit /><Text fontSize={"sm"}>Szerkesztés</Text>
-                            </IconButton>
-                        </Dialog.Trigger>
-                        <Portal>
-                            <Dialog.Backdrop />
-                            <Dialog.Positioner>
-                                <Dialog.Content color={"black"}>
-                                    <Dialog.Header>
-                                        <Dialog.Title>Sofőr szerkesztése</Dialog.Title>
-                                        <Dialog.CloseTrigger color={"white"} asChild>
-                                            <CloseButton size="sm" />
-                                        </Dialog.CloseTrigger>
-                                    </Dialog.Header>
-                                    <Dialog.Body>
-                                        {
-                                            selectedId === null && (
-                                                <Box>
-                                                    <Alert.Root status="error">
-                                                        <Alert.Indicator />
-                                                        <Alert.Title>
-                                                            Zárja be és válasszon sofőrt a táblázatból!
-                                                        </Alert.Title>
-                                                    </Alert.Root>
-                                                </Box>
-                                            )
-                                        }
-                                        {
-                                            selectedId !== null && (
-                                                <p>{selectedId}</p>
-                                            )
-                                        }
-                                    </Dialog.Body>
-                                </Dialog.Content>
-                            </Dialog.Positioner>
-                        </Portal>
-                    </Dialog.Root>
-
                     <Dialog.Root size="lg" placement="center" motionPreset="slide-in-bottom">
                         <Dialog.Trigger asChild>
                             <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
