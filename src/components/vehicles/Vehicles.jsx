@@ -10,9 +10,11 @@ import AddVehicleForm from "../dialog-forms/add-vehicle-form/AddVehicleForm";
 import { deleteVehicleById } from "../../utils/api";
 import ModifyVehicleForm from "../dialog-forms/modify-vehicle-form/ModifyVehicleForm";
 import SavedVehicleData from "../savedVehicleData/SavedVehicleData";
+import { useRefresh } from "../../contexts/refresh/RefreshContext";
 
 function Vehicles() {
 
+    const { triggerRefresh } = useRefresh()
     const { selectedVehicle, setSelectedVehicle } = useSelectedVehicle()
 
     const handleDelete = async () => {
@@ -24,6 +26,7 @@ function Vehicles() {
             try {
                 await deleteVehicleById(Cookies.get("auth_token"), selectedVehicle);
                 setSelectedVehicle(null)
+                triggerRefresh("vehicles")
             } catch (err) {
                 console.error(err);
             }
