@@ -36,6 +36,7 @@ function VehiclesTable() {
       <Table.Root size="md" stickyHeader interactive>
         <Table.Header bg="gray.200">
           <Table.Row>
+            <Table.ColumnHeader fontWeight="bold">Jármű ID</Table.ColumnHeader>
             <Table.ColumnHeader fontWeight="bold">Rendszám</Table.ColumnHeader>
             <Table.ColumnHeader fontWeight="bold">Alvázszám</Table.ColumnHeader>
             <Table.ColumnHeader fontWeight="bold">Évjárat</Table.ColumnHeader>
@@ -85,6 +86,7 @@ function VehiclesTable() {
                   _hover={{ bg: "gray.50" }}
                   transition="background 0.2s"
                 >
+                  <Table.Cell>{vehicle.vehicle_id}</Table.Cell>
                   <Table.Cell>{vehicle.lisence_plate}</Table.Cell>
                   <Table.Cell >{vehicle.vin}</Table.Cell>
                   <Table.Cell>{vehicle.year}</Table.Cell>

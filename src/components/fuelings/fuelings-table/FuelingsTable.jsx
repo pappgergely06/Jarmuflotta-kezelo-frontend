@@ -50,14 +50,14 @@ function FuelingsTable() {
                     {isLoading ? (
                         <Table.Row>
                             <Table.Cell colSpan={4}>
-                                <Center py={10}><Spinner /></Center>
+                                <Center color={"blue.500"} py={10}><Spinner /></Center>
                             </Table.Cell>
                         </Table.Row>
                     ) : fuelings.length === 0 ? (
                         <Table.Row>
                             <Table.Cell colSpan={4}>
                                 <Center py={10}>
-                                    <Text color="gray.500">Nincs megjeleníthető menetlevél!</Text>
+                                    <Text color="gray.500">Nincs megjeleníthető tankolás!</Text>
                                 </Center>
                             </Table.Cell>
                         </Table.Row>

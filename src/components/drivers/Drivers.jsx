@@ -6,6 +6,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { deleteDriverById } from "../../utils/api";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import AddDriverForm from "../dialog-forms/add-driver-form/AddDriverForm";
 
 function Drivers() {
     const [selectedId, setSelectedId] = useState(null);
@@ -32,7 +33,7 @@ function Drivers() {
 
                 <Stack flexDirection={"row"}>
 
-                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                    <Dialog.Root size="lg" placement="center" motionPreset="slide-in-bottom">
                         <Dialog.Trigger asChild>
                             <IconButton px={"0.5rem"} h={"2rem"} color={"white"} bg={"green.600"}>
                                 <FaEdit /><Text fontSize={"sm"}>Szerkesztés</Text>
@@ -72,7 +73,7 @@ function Drivers() {
                         </Portal>
                     </Dialog.Root>
 
-                    <Dialog.Root size="cover" placement="center" motionPreset="slide-in-bottom">
+                    <Dialog.Root size="lg" placement="center" motionPreset="slide-in-bottom">
                         <Dialog.Trigger asChild>
                             <IconButton px={"0.5rem"} h={"2rem"} color={"white"}>
                                 <IoIosPersonAdd /><Text fontSize={"sm"}>Új sofőr</Text>
@@ -89,7 +90,7 @@ function Drivers() {
                                         </Dialog.CloseTrigger>
                                     </Dialog.Header>
                                     <Dialog.Body>
-                                        <p>Form helye</p>
+                                        <AddDriverForm/>
                                     </Dialog.Body>
                                 </Dialog.Content>
                             </Dialog.Positioner>

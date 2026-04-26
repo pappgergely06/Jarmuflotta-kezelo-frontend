@@ -33,7 +33,10 @@ export const fetchServicesByVehicleId = (token, id) => api.get(`services/vehicle
 export const addTravelDoc = (token, body) => api.post("travel-logs", body, authHeader(token)).then(r => r.data);
 export const addFueling = (token, body) => api.post("fuelings", body, authHeader(token)).then(r => r.data);
 export const addVehicle = (token, body) => api.post("vehicles", body, authHeader(token)).then(r => r.data);
-export const addService = (token, body) => api.post("services", body, authHeader(token)).then(r => r.data)
+export const addService = (token, body) => api.post("services", body, authHeader(token)).then(r => r.data);
+export const addDriver = (token, body) => api.post("drivers", body, authHeader(token)).then(r => r.data);
+export const addAssignment = (token, body) => api.post("driver-assignments", body, authHeader(token)).then(r => r.data);
+export const addUser = (body) => api.post("auth/register", body).then(r => r.data);
 
 //PUT
 export const updateOdometer = (token, id, body) => api.put(`vehicles/updateOdo/${id}`, body, authHeader(token)).then(r => r.data);
