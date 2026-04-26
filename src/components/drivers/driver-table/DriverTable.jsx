@@ -1,4 +1,4 @@
-import { Table } from "@chakra-ui/react";
+import { Center, Table, Text, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { fetchDrivers } from "../../../utils/api";
 import Cookies from "js-cookie";
@@ -6,66 +6,92 @@ import DateFormatter from "../../ui/date-formatter/DateFormatter";
 import { useRefresh } from "../../../contexts/refresh/RefreshContext";
 
 function DriverTable({ onSelect, selectedId }) {
-  const { triggers } = useRefresh()
-  const [drivers, setDrivers] = useState([]);
+    const { triggers } = useRefresh();
+    const [drivers, setDrivers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchDrivers(Cookies.get("auth_token"))
-      .then(setDrivers)
-      .catch(console.error);
-  }, [triggers.drivers]);
+    useEffect(() => {
+        setIsLoading(true);
+        fetchDrivers(Cookies.get("auth_token"))
+            .then((data) => {
+                setDrivers(data || []);
+            })
+            .catch((error) => {
+                console.error("Hiba a sofőrök lekérésekor:", error);
+            })
+            .finally(() => setIsLoading(false));
+    }, [triggers.drivers]);
 
-  return (
-    <Table.ScrollArea color="black" borderWidth="1px" borderRadius="md" h="80%" w="100%">
-      <Table.Root size="md" stickyHeader interactive>
-        <Table.Header bg="gray.200">
-          <Table.Row>
-            <Table.ColumnHeader>Név</Table.ColumnHeader>
-            <Table.ColumnHeader>Autó</Table.ColumnHeader>
-            <Table.ColumnHeader>Jogosítvány</Table.ColumnHeader>
-            <Table.ColumnHeader>Telefonszám</Table.ColumnHeader>
-            <Table.ColumnHeader>Email</Table.ColumnHeader>
-            <Table.ColumnHeader>Lakcím</Table.ColumnHeader>
-            <Table.ColumnHeader>Kezdés dátum</Table.ColumnHeader>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {drivers.map((driver) => {
-            const isSelected = selectedId === driver.driver_id;
+    return (
+        <Table.ScrollArea color="black" borderWidth="1px" borderRadius="md" h="80%" w="100%">
+            <Table.Root size="md" stickyHeader interactive>
+                <Table.Header bg="gray.200">
+                    <Table.Row>
+                        <Table.ColumnHeader fontWeight="bold">Név</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Autó</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Jogosítvány</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Telefonszám</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Email</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Lakcím</Table.ColumnHeader>
+                        <Table.ColumnHeader fontWeight="bold">Kezdés dátum</Table.ColumnHeader>
+                    </Table.Row>
+                </Table.Header>
 
-            return (
-              <Table.Row
-                key={driver.driver_id}
-                onClick={() => onSelect(isSelected ? null : driver.driver_id)}
-                cursor="pointer"
-                data-selected={isSelected ? "" : undefined}
-                _selected={{
-                  bg: "blue.100",
-                  _hover: { bg: "blue.200" },
-                  "& > td": {
-                    color: "blue.900",
-                    fontWeight: "bold"
-                  }
-                }}
-                _hover={{ bg: "gray.100" }}
-                transition="background 0.2s"
-              >
-                <Table.Cell>{driver.name}</Table.Cell>
-                <Table.Cell>{driver.car}</Table.Cell>
-                <Table.Cell>{driver.license_number}</Table.Cell>
-                <Table.Cell>{driver.phone}</Table.Cell>
-                <Table.Cell>{driver.email}</Table.Cell>
-                <Table.Cell>{driver.address}</Table.Cell>
-                <Table.Cell>
-                  <DateFormatter dateString={driver.starting_date} />
-                </Table.Cell>
-              </Table.Row>
-            );
-          })}
-        </Table.Body>
-      </Table.Root>
-    </Table.ScrollArea>
-  );
+                <Table.Body>
+                    {isLoading ? (
+                        <Table.Row>
+                            <Table.Cell colSpan={7}>
+                                <Center py={10}>
+                                    <Spinner color="blue.500" />
+                                </Center>
+                            </Table.Cell>
+                        </Table.Row>
+                    ) : drivers.length === 0 ? (
+                        <Table.Row>
+                            <Table.Cell colSpan={7}>
+                                <Center py={10}>
+                                    <Text color="gray.500">Nincsenek megjeleníthető sofőrök!</Text>
+                                </Center>
+                            </Table.Cell>
+                        </Table.Row>
+                    ) : (
+                       drivers.map((driver) => {
+                            const isSelected = selectedId === driver.driver_id;
+
+                            return (
+                                <Table.Row
+                                    key={driver.driver_id}
+                                    onClick={() => onSelect(isSelected ? null : driver.driver_id)}
+                                    cursor="pointer"
+                                    data-selected={isSelected ? "" : undefined}
+                                    _selected={{
+                                        bg: "blue.50",
+                                        _hover: { bg: "blue.100" },
+                                        "& > td": { 
+                                            color: "blue.800", 
+                                            fontWeight: "semibold" 
+                                        }
+                                    }}
+                                    _hover={{ bg: "gray.50" }}
+                                    transition="background 0.2s"
+                                >
+                                    <Table.Cell fontWeight="medium">{driver.name}</Table.Cell>
+                                    <Table.Cell>{driver.car || "Nincs kijelölve"}</Table.Cell>
+                                    <Table.Cell>{driver.license_number}</Table.Cell>
+                                    <Table.Cell>{driver.phone}</Table.Cell>
+                                    <Table.Cell>{driver.email}</Table.Cell>
+                                    <Table.Cell>{driver.address}</Table.Cell>
+                                    <Table.Cell>
+                                        <DateFormatter dateString={driver.starting_date} />
+                                    </Table.Cell>
+                                </Table.Row>
+                            );
+                        })
+                    )}
+                </Table.Body>
+            </Table.Root>
+        </Table.ScrollArea>
+    );
 }
 
 export default DriverTable;
