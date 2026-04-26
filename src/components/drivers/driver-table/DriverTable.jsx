@@ -1,12 +1,14 @@
 import { Center, Table, Text, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { fetchDrivers } from "../../../utils/api";
+import { fetchAssignmentByDriverId, fetchDrivers } from "../../../utils/api";
 import Cookies from "js-cookie";
 import DateFormatter from "../../ui/date-formatter/DateFormatter";
 import { useRefresh } from "../../../contexts/refresh/RefreshContext";
+import useSelectedVehicle from "../../../hooks/useSelectedVehicle";
 
 function DriverTable({ onSelect, selectedId }) {
     const { triggers } = useRefresh();
+    const { setSelectedVehicle } = useSelectedVehicle()
     const [drivers, setDrivers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -22,13 +24,20 @@ function DriverTable({ onSelect, selectedId }) {
             .finally(() => setIsLoading(false));
     }, [triggers.drivers]);
 
+    useEffect(() => {
+        fetchAssignmentByDriverId(Cookies.get("auth_token"), selectedId)
+            .then((data) => setSelectedVehicle(data.vehicle_id))
+            .catch((error) => {
+                console.error("Hiba:", error);
+            })
+    }, [selectedId])
+
     return (
         <Table.ScrollArea color="black" borderWidth="1px" borderRadius="md" h="80%" w="100%">
             <Table.Root size="md" stickyHeader interactive>
                 <Table.Header bg="gray.200">
                     <Table.Row>
                         <Table.ColumnHeader fontWeight="bold">Név</Table.ColumnHeader>
-                        <Table.ColumnHeader fontWeight="bold">Autó</Table.ColumnHeader>
                         <Table.ColumnHeader fontWeight="bold">Jogosítvány</Table.ColumnHeader>
                         <Table.ColumnHeader fontWeight="bold">Telefonszám</Table.ColumnHeader>
                         <Table.ColumnHeader fontWeight="bold">Email</Table.ColumnHeader>
@@ -76,7 +85,6 @@ function DriverTable({ onSelect, selectedId }) {
                                     transition="background 0.2s"
                                 >
                                     <Table.Cell fontWeight="medium">{driver.name}</Table.Cell>
-                                    <Table.Cell>{driver.car || "Nincs kijelölve"}</Table.Cell>
                                     <Table.Cell>{driver.license_number}</Table.Cell>
                                     <Table.Cell>{driver.phone}</Table.Cell>
                                     <Table.Cell>{driver.email}</Table.Cell>
